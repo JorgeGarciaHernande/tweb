@@ -1,33 +1,39 @@
+/* Estilos generales para el contenedor principal de la aplicación */
 .App {
-  text-align: center;
+  text-align: center; /* Centra el contenido horizontalmente */
 }
 
+/* Estilos para el logo (si lo usas y tiene animación de giro) */
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 40vmin; /* Altura responsiva basada en el viewport */
+  pointer-events: none; /* Asegura que el logo no interfiera con eventos del ratón */
 }
 
+/* Media query para deshabilitar la animación si el usuario prefiere reducir el movimiento */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear; /* Animación de giro para el logo */
   }
 }
 
+/* Estilos para el encabezado principal de la aplicación (la sección central oscura) */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #282c34; /* Color de fondo oscuro (casi negro) */
+  min-height: 100vh; /* Ocupa al menos el 100% de la altura de la ventana */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column; /* Organiza los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  font-size: calc(10px + 2vmin); /* Tamaño de fuente responsivo */
+  color: white; /* Color del texto blanco */
 }
 
+/* Estilos para enlaces (como el antiguo "Learn React", si lo volvieras a poner) */
 .App-link {
-  color: #61dafb;
+  color: #61dafb; /* Color azul brillante de React */
 }
 
+/* Animación de giro para el logo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +41,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* --- ESTILOS AÑADIDOS PARA EL BOTÓN ANIMADO Y EL PIE DE PÁGINA --- */
+
+/* Estilos para los títulos (h1, h2, etc.) - Si quieres que sean blancos como el resto del header */
+.App-header h1, .App-header p {
+  color: white; /* Asegura que los títulos y párrafos sean blancos */
+}
+
+/* Estilos para el botón animado */
+.App-header button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #61dafb; /* Color azul de React */
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  /* Transiciones y sombras para que las animaciones de Framer Motion se vean suaves */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 8px rgba(97, 218, 251, 0.5); /* Sombra azul para el botón */
+}
+
+.App-header button:hover {
+  background-color: #4aaddb !important; /* Un poco más oscuro al pasar el ratón */
+  box-shadow: 0px 0px 12px rgba(97, 218, 251, 0.8) !important; /* Sombra más intensa al hover */
+}
+
+/* Estilos para el párrafo "Desarrollado con ❤️ por Jorge" */
+.App-header p[style*="margin-top"] { /* Seleccionamos por el estilo en línea que tiene */
+  color: #a0a0a0; /* Un gris más apagado para el pie de página */
+  font-size: 0.9rem;
+  margin-top: 30px !important; /* Asegura el margen superior */
 }
