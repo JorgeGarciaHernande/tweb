@@ -14,15 +14,13 @@ const galeriaContenido = [
     titulo: 'Dante',
     descripcion: 'Dante es de mis personajes favoritos, no importa que tan mal se encuentre, simplemente hace un chiste y continúa con su pesar.',
   },
-  // Añade más imágenes aquí si tienes, asegurándote de que cada una tenga un 'idFoto' único
-  /*
   {
-    idFoto: 'otro-caballero',
-    imagen: 'https://i.imgur.com/URLDeTuOtraImagen.png',
-    titulo: 'Otro Caballero',
-    descripcion: 'Una descripción para el otro caballero.',
+    idFoto: 'hack', // Otro ID para otra imagen
+    imagen: 'https://i.imgur.com/wfdz7xY.jpeg',
+    titulo: 'Programación',
+    descripcion: 'La programación es una de mis pasiones, me encanta crear cosas nuevas y resolver problemas. he progrmado desde que tenia 13 años una de mis pasiones',
   },
-  */
+  
 ];
 
 // =========================================================
@@ -36,15 +34,12 @@ const listaMusica = [
     archivo: '/audio/Devil May Cry.mp3', // Asegúrate de que el nombre del archivo MP3 sea exacto
     idFoto: 'dante-gif', // <--- ¡Conexión con el idFoto de la imagen de Dante!
   },
-  // Si tienes más canciones, las añadirías aquí:
-  /*
   {
     id: 'm2',
-    nombre: 'Melodía Secreta',
-    archivo: '/audio/melodia_secreta.mp3',
-    idFoto: 'otro-caballero', // Conexión con el idFoto de otra imagen
+    nombre: 'Hackers',
+    archivo: '/audio/Hackers.mp3', // Asegúrate de que el nombre del archivo MP3 sea exacto
+    idFoto: 'hack', // <--- ¡Conexión con el idFoto de la imagen de Hackers!
   },
-  */
 ];
 
 function App() {
