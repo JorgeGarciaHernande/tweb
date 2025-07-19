@@ -1,3 +1,4 @@
+/* Estilos generales para el cuerpo de la página */
 body {
   margin: 0;
   font-family: 'Georgia', serif; /* Una fuente serif clásica puede funcionar bien */
@@ -5,6 +6,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #181818; /* Negro muy oscuro */
   color: #d4d4d4; /* Gris claro */
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .App-header {
@@ -18,7 +30,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Ajuste el borde inferior aquí si lo desea, estaba duplicado antes */
+  border-bottom: 3px solid #444;
 }
+
 .App-header h1 {
   color: #a8a29e; /* Un color hueso o grisáceo */
   font-family: 'Times New Roman', serif; /* Fuente clásica con serifas */
@@ -33,74 +48,61 @@ body {
   margin-bottom: 30px;
   text-align: center;
 }
-/* Puedes añadir un borde inferior sutil al encabezado si lo deseas */
-.App-header {
-  /* ... otros estilos ... */
-  border-bottom: 3px solid #444;
+
+/* Regla CSS para todas las imágenes dentro de App-header (ajustada de 'image') */
+.App-header img {
+  border-radius: 8px;
+  filter: grayscale(70%) sepia(10%); /* Menos saturación y un toque sepia a las imágenes */
 }
-image {
-    filter: grayscale(80%) sepia(20%); /* Un toque sepia y menos saturación a las imágenes */
-}
+
 .App-logo {
-    /* ... estilos existentes ... */
-    filter: drop-shadow(0 0 5px #555); /* Sombra más oscura para el logo */
+  /* Estilos específicos para el logo, sobrescribirán si es necesario */
+  /* Si necesitas que el logo no tenga el filtro, puedes añadir filter: none !important; aquí */
+  filter: drop-shadow(0 0 5px #555); /* Sombra más oscura para el logo */
 }
+
 button {
-    background-color: #333 !important; /* Botones más oscuros */
-    color: #d4d4d4 !important;
-    border: 1px solid #555 !important;
-    box-shadow: 0px 0px 8px rgba(51, 51, 51, 0.7) !important;
+  background-color: #333 !important; /* Botones más oscuros */
+  color: #d4d4d4 !important;
+  border: 1px solid #555 !important;
+  box-shadow: 0px 0px 8px rgba(51, 51, 51, 0.7) !important;
 }
 button:hover {
-    background-color: #444 !important;
-    box-shadow: 0px 0px 12px rgba(68, 68, 68, 0.8) !important;
+  background-color: #444 !important;
+  box-shadow: 0px 0px 12px rgba(68, 68, 68, 0.8) !important;
 }
-/* Estilos para la sección de la galería de imágenes */
-.App-header > div { /* Selecciona el div que contiene la imagen y la descripción */
-    margin-top: 40px;
-    max-width: 600px;
-    padding: 20px;
-    border: 2px solid #333; /* Borde más oscuro para la galería */
-    border-radius: 10px;
-    position: relative;
-    background-color: #222; /* Fondo oscuro para la galería */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+
+/* Estilos para el contenedor principal de la galería de imágenes (el div principal dentro de App-header) */
+/* Lo he hecho más específico para que no afecte otros divs */
+.App-header > div:not(.counters-container) { /* Selecciona el div que contiene la imagen y la descripción, excluyendo el de los contadores */
+  margin-top: 40px;
+  max-width: 600px;
+  padding: 20px;
+  border: 2px solid #333; /* Borde más oscuro para la galería */
+  border-radius: 10px;
+  position: relative;
+  background-color: #222; /* Fondo oscuro para la galería */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
-.App-header img {
-    border-radius: 8px;
-    filter: grayscale(70%) sepia(10%); /* Menos saturación y un toque sepia a la imagen de la galería */
-}
-.App-header h2 {
+/* Estilos para los títulos dentro de la galería (h2) */
+.App-header > div h2 { /* Selector más específico para h2 dentro de la galería */
     color: #b3b3b3; /* Color más apagado para el título de la imagen */
     margin-top: 15px;
 }
+
+
 .image-description-tooltip {
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el tooltip */
-    color: #d4d4d4;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el tooltip */
+  color: #d4d4d4;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
 }
+
+/* El pie de página */
 .App-header p:last-child { /* El pie de página */
     color: #777; /* Gris más oscuro para el pie de página */
+    margin-top: 50px; /* Asegura el margen */
 }
-/* Puedes añadir una fuente con un estilo más "gótico" si lo encuentras en Google Fonts o similar */
-/* Ejemplo:
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
-body {
-  font-family: 'Georgia', serif;
-}
-.App-header h1 {
-  font-family: 'UnifrakturMaguntia', cursive;
-  font-weight: normal; /* Para no tener texto demasiado grueso por defecto */
 
-*/
-/* Estilos para el footer */
-.App-footer {
-    background-color: #282828;
-    color: #d4d4d4;
-    padding: 20px;
-    text-align: center;
-    border-top: 1px solid #333;
-}
 /* --- ESTILOS CLAVE PARA EL LOOK DIGITAL DEL CRONÓMETRO (Elegante) --- */
 .digital-cronometer-display {
   font-family: 'Press Start 2P', 'Courier New', monospace; /* ¡La fuente digital! */
@@ -124,9 +126,10 @@ body {
   min-width: 45px; /* Ancho mínimo para cada número */
   text-align: center;
   /* Opcional: para un efecto de segmento apagado detrás del número */
+  /* Si quieres esto, borra el comentario y ajusta el color: */
   /* position: relative; */
 }
-/* Opcional: para un efecto de segmento apagado detrás del número
+/*
 .digital-cronometer-display span::before {
     content: '88';
     position: absolute;
@@ -134,7 +137,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    color: rgba(152, 251, 152, 0.1); // Color muy tenue para el "apagado"
+    color: rgba(152, 251, 152, 0.1);
     z-index: -1;
     text-shadow: none;
 }
@@ -162,6 +165,12 @@ body {
 .counter-item {
   margin-bottom: 20px; /* Más espacio entre cada cronómetro */
   padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil */
+}
+.counter-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .counter-title {
