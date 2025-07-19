@@ -1,7 +1,16 @@
 import './App.css';
 import { motion } from 'framer-motion';
 import keybladeLogo from './keyblade.png';
-import React, { useState, useRef } from 'react'; // Asegúrate de importar 'useRef'
+// Asegúrate de importar 'useState', 'useRef' y ¡'useEffect'!
+import React, { useState, useRef, useEffect } from 'react';
+
+// =========================================================
+// ¡FECHAS DE INICIO PARA TUS CONTADORES!
+// (Las he actualizado a un formato y hora para que cuenten desde el pasado)
+// =========================================================
+const FECHA_INICIO_CONTADOR_HABLAR = new Date('May 4, 2025 18:30:00 CST').getTime(); // 4 de Mayo, 6:30 PM
+const FECHA_INICIO_CONTADOR_LLAMADA = new Date('June 6, 2025 22:18:00 CST').getTime(); // 6 de Junio, 10:18 PM
+const FECHA_INICIO_CONTADOR_OTAKUFEST = new Date('June 10, 2025 16:20:00 CST').getTime(); // 10 de Junio, 4:20 PM
 
 // =========================================================
 // ¡TU GALERÍA DE IMÁGENES!
@@ -19,12 +28,10 @@ const galeriaContenido = [
     titulo: 'Programación',
     descripcion: 'La programación es una de mis pasiones, me encanta crear cosas nuevas y resolver problemas. He programado desde que tenía 13 años, una de mis pasiones.',
   },
-  // Añade más imágenes aquí si tienes
 ];
 
 // =========================================================
 // ¡TU LISTA DE MÚSICA!
-// =posición del 'archivo' apunta correctamente a tu MP3 en public/audio/
 // =========================================================
 const listaMusica = [
   {
@@ -36,7 +43,7 @@ const listaMusica = [
   {
     id: 'm2',
     nombre: 'Hackers',
-    archivo: '/audio/Hackers.mp3', // Nombre del archivo MP3
+    archivo: '/audio/Hackers.mp3',
     idFoto: 'hack', // Conexión con la imagen de Programación
   },
 ];
@@ -45,14 +52,105 @@ function App() {
   // Estados
   const [indiceContenidoActual, setIndiceContenidoActual] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [cancionActual, setCancionActual] = useState(null); // Seguiremos usando esto para mostrar el nombre
-  const audioRef = useRef(null); // Referencia al elemento <audio>
+  const [cancionActual, setCancionActual] = useState(null);
+  const audioRef = useRef(null);
+
+  // --- ¡NUEVOS ESTADOS PARA LOS CONTADORES! ---
+  const [tiempoHablar, setTiempoHablar] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+  const [tiempoLlamada, setTiempoLlamada] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+  const [tiempoOtakuFest, setTiempoOtakuFest] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+
+
+  // =========================================================
+  // ¡HOOKS useEffect PARA CADA CONTADOR!
+  // =========================================================
+
+  // Contador para "Hablar"
+  useEffect(() => {
+    const actualizarContadorHablar = () => {
+      const ahora = new Date().getTime();
+      const diferencia = ahora - FECHA_INICIO_CONTADOR_HABLAR;
+
+      if (diferencia < 0) {
+        setTiempoHablar({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+        return;
+      }
+      const segundosTotales = Math.floor(diferencia / 1000);
+      const minutosTotales = Math.floor(segundosTotales / 60);
+      const horasTotales = Math.floor(minutosTotales / 60);
+      const diasTotales = Math.floor(horasTotales / 24);
+
+      setTiempoHablar({
+        dias: diasTotales,
+        horas: horasTotales % 24,
+        minutos: minutosTotales % 60,
+        segundos: segundosTotales % 60,
+      });
+    };
+    actualizarContadorHablar();
+    const intervaloId = setInterval(actualizarContadorHablar, 1000);
+    return () => clearInterval(intervaloId);
+  }, []); // Se ejecuta solo una vez al montar
+
+  // Contador para "Llamada"
+  useEffect(() => {
+    const actualizarContadorLlamada = () => {
+      const ahora = new Date().getTime();
+      const diferencia = ahora - FECHA_INICIO_CONTADOR_LLAMADA;
+
+      if (diferencia < 0) {
+        setTiempoLlamada({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+        return;
+      }
+      const segundosTotales = Math.floor(diferencia / 1000);
+      const minutosTotales = Math.floor(segundosTotales / 60);
+      const horasTotales = Math.floor(minutosTotales / 60);
+      const diasTotales = Math.floor(horasTotales / 24);
+
+      setTiempoLlamada({
+        dias: diasTotales,
+        horas: horasTotales % 24,
+        minutos: minutosTotales % 60,
+        segundos: segundosTotales % 60,
+      });
+    };
+    actualizarContadorLlamada();
+    const intervaloId = setInterval(actualizarContadorLlamada, 1000);
+    return () => clearInterval(intervaloId);
+  }, []); // Se ejecuta solo una vez al montar
+
+  // Contador para "OtakuFest"
+  useEffect(() => {
+    const actualizarContadorOtakuFest = () => {
+      const ahora = new Date().getTime();
+      const diferencia = ahora - FECHA_INICIO_CONTADOR_OTAKUFEST;
+
+      if (diferencia < 0) {
+        setTiempoOtakuFest({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+        return;
+      }
+      const segundosTotales = Math.floor(diferencia / 1000);
+      const minutosTotales = Math.floor(segundosTotales / 60);
+      const horasTotales = Math.floor(minutosTotales / 60);
+      const diasTotales = Math.floor(horasTotales / 24);
+
+      setTiempoOtakuFest({
+        dias: diasTotales,
+        horas: horasTotales % 24,
+        minutos: minutosTotales % 60,
+        segundos: segundosTotales % 60,
+      });
+    };
+    actualizarContadorOtakuFest();
+    const intervaloId = setInterval(actualizarContadorOtakuFest, 1000);
+    return () => clearInterval(intervaloId);
+  }, []); // Se ejecuta solo una vez al montar
+
 
   // =========================================================
   // ¡FUNCIÓN handleClick UNIFICADA (IMAGEN Y MÚSICA)!
   // =========================================================
   const handleClick = () => {
-    // === Lógica para SELECCIONAR MÚSICA al azar (copiada de handlePlayMusic) ===
     if (listaMusica.length === 0) {
       alert("No hay canciones en la lista.");
       return;
@@ -60,20 +158,18 @@ function App() {
 
     const randomIndexMusica = Math.floor(Math.random() * listaMusica.length);
     const cancionSeleccionada = listaMusica[randomIndexMusica];
-    setCancionActual(cancionSeleccionada); // Actualiza el estado de la canción actual
+    setCancionActual(cancionSeleccionada);
 
-    // 2. Busca la imagen en galeriaContenido que tenga el mismo 'idFoto' que la canción seleccionada
     const imagenAsociada = galeriaContenido.find(
       (img) => img.idFoto === cancionSeleccionada.idFoto
     );
 
-    // 3. Si se encuentra una imagen asociada, actualiza el estado de la galería
     if (imagenAsociada) {
       const indiceParaMostrar = galeriaContenido.findIndex(
         (img) => img.idFoto === imagenAsociada.idFoto
       );
       if (indiceParaMostrar !== -1) {
-        setIndiceContenidoActual(indiceParaMostrar); // Actualiza el estado de la imagen de la galería
+        setIndiceContenidoActual(indiceParaMostrar);
       } else {
         setIndiceContenidoActual(null);
         console.warn(
@@ -87,7 +183,6 @@ function App() {
       );
     }
 
-    // 4. Reproducir la canción
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.load();
@@ -98,7 +193,7 @@ function App() {
         )
       );
     }
-  }; // <--- FIN DE handleClick
+  };
 
   const contenidoAMostrar =
     indiceContenidoActual !== null
@@ -120,33 +215,48 @@ function App() {
         <p>Explora lo que podemos crear con React y animaciones.</p>
 
         {/* ========================================================= */}
-        {/* ¡AHORA SOLO UN BOTÓN QUE MUESTRA IMAGEN Y REPRODUCE MÚSICA! */}
+        {/* ¡NUEVOS CONTADORES INDIVIDUALES! */}
         {/* ========================================================= */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          style={{ marginTop: '20px', marginBottom: '10px', fontSize: '1.2rem', color: '#B0C4DE', textAlign: 'left', maxWidth: '400px', width: '90%' }}
+        >
+          <p>Desde que empezamos a hablar: <br/>
+            **{tiempoHablar.dias}** días, **{tiempoHablar.horas}** horas, **{tiempoHablar.minutos}** min, **{tiempoHablar.segundos}** seg
+          </p>
+          <p>Desde nuestra primera llamada: <br/>
+            **{tiempoLlamada.dias}** días, **{tiempoLlamada.horas}** horas, **{tiempoLlamada.minutos}** min, **{tiempoLlamada.segundos}** seg
+          </p>
+          <p>Desde OtakuFest: <br/>
+            **{tiempoOtakuFest.dias}** días, **{tiempoOtakuFest.horas}** horas, **{tiempoOtakuFest.minutos}** min, **{tiempoOtakuFest.segundos}** seg
+          </p>
+        </motion.div>
+        {/* --- FIN NUEVOS CONTADORES --- */}
+
+
+        {/* Botón unificado */}
         <motion.button
           initial={{ scale: 1, opacity: 0.5 }}
           animate={{ scale: 1.1, opacity: 1 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
           whileHover={{ scale: 1.2, boxShadow: "0px 0px 8px rgb(255,255,255)" }}
           whileTap={{ scale: 0.9 }}
-          onClick={handleClick} // <--- ¡Este botón ahora hace TODO!
+          onClick={handleClick}
           style={{
             padding: '15px 30px',
             fontSize: '1.2rem',
             borderRadius: '8px',
             border: 'none',
-            backgroundColor: '#61dafb', // Color azul por defecto para el botón principal
+            backgroundColor: '#61dafb',
             color: 'white',
             cursor: 'pointer',
             marginTop: '20px'
           }}
         >
-          {/* El texto del botón ahora puede reflejar si ya hay música sonando */}
           {cancionActual ? `Ver Siguiente: ${cancionActual.nombre}` : 'Iniciar Experiencia'}
         </motion.button>
-
-        {/* ========================================================= */}
-        {/* ¡EL BOTÓN DE MÚSICA SEPARADO SE ELIMINA DE AQUÍ!          */}
-        {/* ========================================================= */}
 
         {/* Elemento de Audio oculto */}
         <audio ref={audioRef} controls style={{ display: 'none' }}>
@@ -189,4 +299,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
