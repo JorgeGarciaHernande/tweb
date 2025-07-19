@@ -1,16 +1,8 @@
 import './App.css';
 import { motion } from 'framer-motion';
 import keybladeLogo from './keyblade.png';
-// Asegúrate de importar 'useState', 'useRef' y ¡'useEffect'!
+// Asegúrate de que 'useState', 'useRef' y ¡'useEffect' estén importados!
 import React, { useState, useRef, useEffect } from 'react';
-
-// =========================================================
-// ¡FECHAS DE INICIO PARA TUS CONTADORES!
-// (Las he actualizado a un formato y hora para que cuenten desde el pasado)
-// =========================================================
-const FECHA_INICIO_CONTADOR_HABLAR = new Date('May 4, 2025 18:30:00 CST').getTime(); // 4 de Mayo, 6:30 PM
-const FECHA_INICIO_CONTADOR_LLAMADA = new Date('June 6, 2025 22:18:00 CST').getTime(); // 6 de Junio, 10:18 PM
-const FECHA_INICIO_CONTADOR_OTAKUFEST = new Date('June 10, 2025 16:20:00 CST').getTime(); // 10 de Junio, 4:20 PM
 
 // =========================================================
 // ¡TU GALERÍA DE IMÁGENES!
@@ -37,119 +29,82 @@ const listaMusica = [
   {
     id: 'm1',
     nombre: 'Devil May Cry',
-    archivo: '/audio/Devil May Cry.mp3',
+    archivo: '/audio/Devil May Cry.mp3', // Asegúrate de que el nombre del archivo MP3 sea exacto
     idFoto: 'dante-gif', // Conexión con la imagen de Dante
   },
   {
     id: 'm2',
     nombre: 'Hackers',
-    archivo: '/audio/Hackers.mp3',
+    archivo: '/audio/Hackers.mp3', // Nombre del archivo MP3
     idFoto: 'hack', // Conexión con la imagen de Programación
   },
 ];
 
 function App() {
-  // Estados
+  // Estados de la galería y música
   const [indiceContenidoActual, setIndiceContenidoActual] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [cancionActual, setCancionActual] = useState(null);
   const audioRef = useRef(null);
 
-  // --- ¡NUEVOS ESTADOS PARA LOS CONTADORES! ---
-  const [tiempoHablar, setTiempoHablar] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
-  const [tiempoLlamada, setTiempoLlamada] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
-  const [tiempoOtakuFest, setTiempoOtakuFest] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
+  // === ESTADOS PARA LOS CRONÓMETROS ===
+  // Usaremos un único estado para forzar la actualización de todos los cronómetros
+  const [currentTime, setCurrentTime] = useState(Date.now());
 
+  // === FECHAS DE INICIO DE LOS CRONÓMETROS (¡AJUSTA ESTAS FECHAS A EVENTOS PASADOS REALES!) ===
+  // Formato ISO: YYYY-MM-DDTHH:mm:ss
+  // Hora actual en Ciudad Madero, Tam, MX: Sábado, 19 de julio de 2025, 2:10 PM CST
+  const FECHA_INICIO_HABLAR = new Date('2025-05-04T18:30:00').getTime(); // Ejemplo: Hace ~29 días
+  const FECHA_INICIO_LLAMADA = new Date('2025-06-06T22:18:00').getTime(); // Ejemplo: Hace ~8 días
+  const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T14:27:00').getTime(); // Ejemplo: Hace ~1 día
 
-  // =========================================================
-  // ¡HOOKS useEffect PARA CADA CONTADOR!
-  // =========================================================
+  // === FUNCIÓN PARA CALCULAR Y FORMATEAR TIEMPO CRONÓMETRO ===
+  // Esta función ahora recibe el 'momentoActual' (que es el currentTime actualizado cada segundo)
+  const formatCronometro = (fechaInicio, momentoActual) => {
+    const diferencia = momentoActual - fechaInicio; // Diferencia en milisegundos
 
-  // Contador para "Hablar"
+    // Si la fecha es futura, muestra '00D00H00M00S'
+    if (diferencia < 0) {
+      return (
+        <>
+          <span>00</span><span className="unit">D</span>
+          <span>00</span><span className="unit">H</span>
+          <span>00</span><span className="unit">M</span>
+          <span>00</span><span className="unit">S</span>
+        </>
+      );
+    }
+
+    const segundosTotales = Math.floor(diferencia / 1000);
+    const minutosTotales = Math.floor(segundosTotales / 60);
+    const horasTotales = Math.floor(minutosTotales / 60);
+    const diasTotales = Math.floor(horasTotales / 24);
+
+    const formatNum = (num) => (num < 10 ? '0' + num : num); // Función auxiliar para añadir cero inicial
+
+    // Retorna el JSX formateado para el cronómetro
+    return (
+      <>
+        <span>{formatNum(diasTotales)}</span><span className="unit">D</span>
+        <span>{formatNum(horasTotales % 24)}</span><span className="unit">H</span>
+        <span>{formatNum(minutosTotales % 60)}</span><span className="unit">M</span>
+        <span>{formatNum(segundosTotales % 60)}</span><span className="unit">S</span>
+      </>
+    );
+  };
+
+  // === useEffect para actualizar el estado 'currentTime' cada segundo ===
   useEffect(() => {
-    const actualizarContadorHablar = () => {
-      const ahora = new Date().getTime();
-      const diferencia = ahora - FECHA_INICIO_CONTADOR_HABLAR;
+    const intervalId = setInterval(() => {
+      setCurrentTime(Date.now()); // Actualiza el estado currentTime cada segundo
+    }, 1000); // Cada 1000 milisegundos (1 segundo)
 
-      if (diferencia < 0) {
-        setTiempoHablar({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
-        return;
-      }
-      const segundosTotales = Math.floor(diferencia / 1000);
-      const minutosTotales = Math.floor(segundosTotales / 60);
-      const horasTotales = Math.floor(minutosTotales / 60);
-      const diasTotales = Math.floor(horasTotales / 24);
-
-      setTiempoHablar({
-        dias: diasTotales,
-        horas: horasTotales % 24,
-        minutos: minutosTotales % 60,
-        segundos: segundosTotales % 60,
-      });
-    };
-    actualizarContadorHablar();
-    const intervaloId = setInterval(actualizarContadorHablar, 1000);
-    return () => clearInterval(intervaloId);
-  }, []); // Se ejecuta solo una vez al montar
-
-  // Contador para "Llamada"
-  useEffect(() => {
-    const actualizarContadorLlamada = () => {
-      const ahora = new Date().getTime();
-      const diferencia = ahora - FECHA_INICIO_CONTADOR_LLAMADA;
-
-      if (diferencia < 0) {
-        setTiempoLlamada({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
-        return;
-      }
-      const segundosTotales = Math.floor(diferencia / 1000);
-      const minutosTotales = Math.floor(segundosTotales / 60);
-      const horasTotales = Math.floor(minutosTotales / 60);
-      const diasTotales = Math.floor(horasTotales / 24);
-
-      setTiempoLlamada({
-        dias: diasTotales,
-        horas: horasTotales % 24,
-        minutos: minutosTotales % 60,
-        segundos: segundosTotales % 60,
-      });
-    };
-    actualizarContadorLlamada();
-    const intervaloId = setInterval(actualizarContadorLlamada, 1000);
-    return () => clearInterval(intervaloId);
-  }, []); // Se ejecuta solo una vez al montar
-
-  // Contador para "OtakuFest"
-  useEffect(() => {
-    const actualizarContadorOtakuFest = () => {
-      const ahora = new Date().getTime();
-      const diferencia = ahora - FECHA_INICIO_CONTADOR_OTAKUFEST;
-
-      if (diferencia < 0) {
-        setTiempoOtakuFest({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
-        return;
-      }
-      const segundosTotales = Math.floor(diferencia / 1000);
-      const minutosTotales = Math.floor(segundosTotales / 60);
-      const horasTotales = Math.floor(minutosTotales / 60);
-      const diasTotales = Math.floor(horasTotales / 24);
-
-      setTiempoOtakuFest({
-        dias: diasTotales,
-        horas: horasTotales % 24,
-        minutos: minutosTotales % 60,
-        segundos: segundosTotales % 60,
-      });
-    };
-    actualizarContadorOtakuFest();
-    const intervaloId = setInterval(actualizarContadorOtakuFest, 1000);
-    return () => clearInterval(intervaloId);
-  }, []); // Se ejecuta solo una vez al montar
+    // Limpieza: detiene el intervalo cuando el componente se desmonta
+    return () => clearInterval(intervalId);
+  }, []); // El array vacío [] asegura que este efecto se ejecuta solo una vez al inicio
 
 
-  // =========================================================
-  // ¡FUNCIÓN handleClick UNIFICADA (IMAGEN Y MÚSICA)!
-  // =========================================================
+  // Lógica de handleClick (IMAGEN Y MÚSICA)
   const handleClick = () => {
     if (listaMusica.length === 0) {
       alert("No hay canciones en la lista.");
@@ -215,26 +170,39 @@ function App() {
         <p>Explora lo que podemos crear con React y animaciones.</p>
 
         {/* ========================================================= */}
-        {/* ¡NUEVOS CONTADORES INDIVIDUALES! */}
+        {/* ¡CONTADORES CRONÓMETRO CON ESTILO DIGITAL! (Directamente en App.js) */}
         {/* ========================================================= */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          style={{ marginTop: '20px', marginBottom: '10px', fontSize: '1.2rem', color: '#B0C4DE', textAlign: 'left', maxWidth: '400px', width: '90%' }}
+          className="counters-container"
         >
-          <p>Desde que empezamos a hablar: <br/>
-            **{tiempoHablar.dias}** días, **{tiempoHablar.horas}** horas, **{tiempoHablar.minutos}** min, **{tiempoHablar.segundos}** seg
-          </p>
-          <p>Desde nuestra primera llamada: <br/>
-            **{tiempoLlamada.dias}** días, **{tiempoLlamada.horas}** horas, **{tiempoLlamada.minutos}** min, **{tiempoLlamada.segundos}** seg
-          </p>
-          <p>Desde OtakuFest: <br/>
-            **{tiempoOtakuFest.dias}** días, **{tiempoOtakuFest.horas}** horas, **{tiempoOtakuFest.minutos}** min, **{tiempoOtakuFest.segundos}** seg
-          </p>
-        </motion.div>
-        {/* --- FIN NUEVOS CONTADORES --- */}
+          {/* Contador para "Desde que empezamos a hablar" */}
+          <div className="counter-item">
+            <p className="counter-title">Desde que empezamos a hablar:</p>
+            <div className="digital-cronometer-display">
+              {formatCronometro(FECHA_INICIO_HABLAR, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+            </div>
+          </div>
 
+          {/* Contador para "Desde nuestra primera llamada" */}
+          <div className="counter-item">
+            <p className="counter-title">Desde nuestra primera llamada:</p>
+            <div className="digital-cronometer-display">
+              {formatCronometro(FECHA_INICIO_LLAMADA, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+            </div>
+          </div>
+
+          {/* Contador para "Desde OtakuFest" */}
+          <div className="counter-item">
+            <p className="counter-title">Desde OtakuFest:</p>
+            <div className="digital-cronometer-display">
+              {formatCronometro(FECHA_INICIO_OTAKUFEST, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+            </div>
+          </div>
+        </motion.div>
+        {/* --- FIN CONTADORES --- */}
 
         {/* Botón unificado */}
         <motion.button
@@ -249,7 +217,7 @@ function App() {
             fontSize: '1.2rem',
             borderRadius: '8px',
             border: 'none',
-            backgroundColor: '#61dafb',
+            backgroundColor: '#61dafb', // Color azul por defecto para el botón principal
             color: 'white',
             cursor: 'pointer',
             marginTop: '20px'
@@ -264,7 +232,7 @@ function App() {
           Tu navegador no soporta el elemento de audio.
         </audio>
 
-        {/* Sección de la galería de imágenes (sin cambios en esta parte) */}
+        {/* Sección de la galería de imágenes */}
         {contenidoAMostrar && (
           <motion.div
             key={contenidoAMostrar.idFoto}
@@ -299,4 +267,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

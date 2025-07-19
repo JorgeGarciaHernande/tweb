@@ -1,78 +1,182 @@
-/* Estilos generales para el contenedor principal de la aplicación */
-.App {
-  text-align: center; /* Centra el contenido horizontalmente */
+body {
+  margin: 0;
+  font-family: 'Georgia', serif; /* Una fuente serif clásica puede funcionar bien */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #181818; /* Negro muy oscuro */
+  color: #d4d4d4; /* Gris claro */
 }
 
-/* Estilos para el logo (si lo usas y tiene animación de giro) */
-.App-logo {
-  height: 40vmin; /* Altura responsiva basada en el viewport */
-  pointer-events: none; /* Asegura que el logo no interfiera con eventos del ratón */
-}
-
-/* Media query para deshabilitar la animación si el usuario prefiere reducir el movimiento */
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear; /* Animación de giro para el logo */
-  }
-}
-
-/* Estilos para el encabezado principal de la aplicación (la sección central oscura) */
 .App-header {
-  background-color: #282c34; /* Color de fondo oscuro (casi negro) */
-  min-height: 100vh; /* Ocupa al menos el 100% de la altura de la ventana */
+  background-color: #282828; /* Gris oscuro */
+  min-width: 80%;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7); /* Sombra más marcada */
+  border: 2px solid #333; /* Borde más visible */
   display: flex;
-  flex-direction: column; /* Organiza los elementos en columna */
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  font-size: calc(10px + 2vmin); /* Tamaño de fuente responsivo */
-  color: white; /* Color del texto blanco */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.App-header h1 {
+  color: #a8a29e; /* Un color hueso o grisáceo */
+  font-family: 'Times New Roman', serif; /* Fuente clásica con serifas */
+  letter-spacing: 0.1em; /* Un poco de espaciado entre letras */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); /* Sombra más profunda para el texto */
+}
+.App-header p:first-of-type {
+  color: #b3b3b3;
+  line-height: 1.7; /* Más espacio entre líneas para legibilidad */
+  max-width: 700px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+/* Puedes añadir un borde inferior sutil al encabezado si lo deseas */
+.App-header {
+  /* ... otros estilos ... */
+  border-bottom: 3px solid #444;
+}
+image {
+    filter: grayscale(80%) sepia(20%); /* Un toque sepia y menos saturación a las imágenes */
+}
+.App-logo {
+    /* ... estilos existentes ... */
+    filter: drop-shadow(0 0 5px #555); /* Sombra más oscura para el logo */
+}
+button {
+    background-color: #333 !important; /* Botones más oscuros */
+    color: #d4d4d4 !important;
+    border: 1px solid #555 !important;
+    box-shadow: 0px 0px 8px rgba(51, 51, 51, 0.7) !important;
+}
+button:hover {
+    background-color: #444 !important;
+    box-shadow: 0px 0px 12px rgba(68, 68, 68, 0.8) !important;
+}
+/* Estilos para la sección de la galería de imágenes */
+.App-header > div { /* Selecciona el div que contiene la imagen y la descripción */
+    margin-top: 40px;
+    max-width: 600px;
+    padding: 20px;
+    border: 2px solid #333; /* Borde más oscuro para la galería */
+    border-radius: 10px;
+    position: relative;
+    background-color: #222; /* Fondo oscuro para la galería */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+.App-header img {
+    border-radius: 8px;
+    filter: grayscale(70%) sepia(10%); /* Menos saturación y un toque sepia a la imagen de la galería */
+}
+.App-header h2 {
+    color: #b3b3b3; /* Color más apagado para el título de la imagen */
+    margin-top: 15px;
+}
+.image-description-tooltip {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el tooltip */
+    color: #d4d4d4;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
+}
+.App-header p:last-child { /* El pie de página */
+    color: #777; /* Gris más oscuro para el pie de página */
+}
+/* Puedes añadir una fuente con un estilo más "gótico" si lo encuentras en Google Fonts o similar */
+/* Ejemplo:
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+body {
+  font-family: 'Georgia', serif;
+}
+.App-header h1 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-weight: normal; /* Para no tener texto demasiado grueso por defecto */
+
+*/
+/* Estilos para el footer */
+.App-footer {
+    background-color: #282828;
+    color: #d4d4d4;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+/* --- ESTILOS CLAVE PARA EL LOOK DIGITAL DEL CRONÓMETRO (Elegante) --- */
+.digital-cronometer-display {
+  font-family: 'Press Start 2P', 'Courier New', monospace; /* ¡La fuente digital! */
+  font-size: 2.2rem; /* Números más grandes para mayor impacto */
+  color: #98fb98; /* Verde menta o esmeralda claro (más sofisticado) */
+  background-color: #1c1c1c; /* Fondo más oscuro para el display */
+  padding: 10px 15px; /* Más padding */
+  border-radius: 8px; /* Bordes ligeramente más suaves */
+  letter-spacing: 4px; /* Mayor espaciado entre dígitos */
+  text-shadow: 0 0 10px rgba(152, 251, 152, 0.7); /* Resplandor más suave y prominente */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px; /* Más espacio entre los bloques D, H, M, S */
+  border: 1px solid #66bb6a; /* Borde sutil que complementa el color */
+  margin-top: 10px; /* Asegura espacio entre el título y los números */
 }
 
-/* Estilos para enlaces (como el antiguo "Learn React", si lo volvieras a poner) */
-.App-link {
-  color: #61dafb; /* Color azul brillante de React */
+.digital-cronometer-display span {
+  display: inline-block;
+  min-width: 45px; /* Ancho mínimo para cada número */
+  text-align: center;
+  /* Opcional: para un efecto de segmento apagado detrás del número */
+  /* position: relative; */
+}
+/* Opcional: para un efecto de segmento apagado detrás del número
+.digital-cronometer-display span::before {
+    content: '88';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: rgba(152, 251, 152, 0.1); // Color muy tenue para el "apagado"
+    z-index: -1;
+    text-shadow: none;
+}
+*/
+
+.digital-cronometer-display .unit {
+  font-size: 0.8rem; /* Tamaño de las unidades (D, H, M, S) */
+  color: #a5d6a7; /* Un verde más apagado para las unidades */
+  background-color: transparent;
+  padding: 0;
+  margin-left: -8px; /* Ajusta este valor si el `letter-spacing` cambia */
+  min-width: unset;
+  align-self: flex-end; /* Alinea las unidades a la parte inferior del número */
 }
 
-/* Animación de giro para el logo */
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Ajustes menores al contenedor de contadores para mejor espaciado */
+.counters-container {
+  padding: 25px; /* Más padding interno */
+  margin-top: 40px; /* Más espacio arriba */
+  margin-bottom: 40px; /* Más espacio abajo */
+  background-color: #2e3034; /* Fondo un poco más claro y sutil */
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); /* Sombra más suave */
 }
 
-/* --- ESTILOS AÑADIDOS PARA EL BOTÓN ANIMADO Y EL PIE DE PÁGINA --- */
-
-/* Estilos para los títulos (h1, h2, etc.) - Si quieres que sean blancos como el resto del header */
-.App-header h1, .App-header p {
-  color: white; /* Asegura que los títulos y párrafos sean blancos */
+.counter-item {
+  margin-bottom: 20px; /* Más espacio entre cada cronómetro */
+  padding-bottom: 20px;
 }
 
-/* Estilos para el botón animado */
-.App-header button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #61dafb; /* Color azul de React */
-  color: white;
-  cursor: pointer;
-  margin-top: 20px;
-  /* Transiciones y sombras para que las animaciones de Framer Motion se vean suaves */
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 0px 8px rgba(97, 218, 251, 0.5); /* Sombra azul para el botón */
+.counter-title {
+    font-family: 'Times New Roman', serif; /* O la fuente que elijas para títulos normales */
+    font-size: 1.1rem !important; /* Tamaño del título del contador */
+    color: #a080c0 !important; /* Color de título gótico */
+    margin-bottom: 5px !important;
+    letter-spacing: 1px !important;
+    text-align: center; /* Asegura el centrado del título del contador */
 }
 
-.App-header button:hover {
-  background-color: #4aaddb !important; /* Un poco más oscuro al pasar el ratón */
-  box-shadow: 0px 0px 12px rgba(97, 218, 251, 0.8) !important; /* Sombra más intensa al hover */
-}
-
-/* Estilos para el párrafo "Desarrollado con ❤️ por Jorge" */
-.App-header p[style*="margin-top"] { /* Seleccionamos por el estilo en línea que tiene */
-  color: #a0a0a0; /* Un gris más apagado para el pie de página */
-  font-size: 0.9rem;
-  margin-top: 30px !important; /* Asegura el margen superior */
+.countdown-finalizado { /* Este estilo se usa si el contador llegara a cero (en cuenta regresiva), pero como es cronómetro, no lo verás */
+    font-family: 'Times New Roman', serif;
+    font-size: 1.5rem !important;
+    color: #e60000 !important;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    margin-top: 10px !important;
 }
