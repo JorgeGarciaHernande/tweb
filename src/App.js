@@ -202,7 +202,7 @@ function App() {
         {/* ========================================================= */}
         {/* ¡GALERÍA 3: "Lo que siento por ti"! */}
         {/* ========================================================= */}
-        <h2 className="gallery-section-title"></h2>
+        <h2 className="gallery-section-title">lo que siento por ti</h2>
         <Gallery galleryItems={galeriaContenido_Sentimientos} musicList={listaMusica_Sentimientos} />
 
         {/* ========================================================= */}
