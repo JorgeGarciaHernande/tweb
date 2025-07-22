@@ -1,11 +1,12 @@
+
 /* Estilos generales para el cuerpo de la página */
 body {
   margin: 0;
-  font-family: 'Georgia', serif; /* Una fuente serif clásica puede funcionar bien */
+  font-family: 'Georgia', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #181818; /* Negro muy oscuro */
-  color: #d4d4d4; /* Gris claro */
+  background-color: #121212; /* Fondo muy oscuro, casi negro, más profundo */
+  color: #e0e0e0; /* Texto gris claro para contraste suave */
 }
 
 .App {
@@ -20,152 +21,224 @@ body {
 }
 
 .App-header {
-  background-color: #282828; /* Gris oscuro */
+  background-color: #202020; /* Gris muy oscuro, elegante */
   min-width: 80%;
+  max-width: 1000px; /* Limita el ancho del header para pantallas muy grandes */
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7); /* Sombra más marcada */
-  border: 2px solid #333; /* Borde más visible */
+  border-radius: 12px; /* Bordes ligeramente más suaves */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8); /* Sombra más prominente para profundidad */
+  border: 1px solid #404040; /* Borde sutil, gris oscuro */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* Ajuste el borde inferior aquí si lo desea, estaba duplicado antes */
-  border-bottom: 3px solid #444;
+  border-bottom: 3px solid #333; /* Borde inferior sutil */
 }
 
+/* Títulos principales */
 .App-header h1 {
-  color: #a8a29e; /* Un color hueso o grisáceo */
-  font-family: 'Times New Roman', serif; /* Fuente clásica con serifas */
-  letter-spacing: 0.1em; /* Un poco de espaciado entre letras */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); /* Sombra más profunda para el texto */
+  color: #c9a4de; /* Morado/lavanda suave y romántico */
+  font-family: 'Times New Roman', serif;
+  letter-spacing: 0.12em; /* Ligeramente más espaciado */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); /* Sombra más definida */
+  margin-bottom: 15px;
+  text-align: center;
+  max-width: 800px;
 }
+
+/* Primer párrafo de descripción principal */
 .App-header p:first-of-type {
-  color: #b3b3b3;
-  line-height: 1.7; /* Más espacio entre líneas para legibilidad */
+  color: #b0b0b0; /* Gris medio para el texto del cuerpo */
+  line-height: 1.8; /* Más espacio entre líneas para lectura */
   max-width: 700px;
   margin-top: 0;
-  margin-bottom: 30px;
+  margin-bottom: 40px; /* Más espacio debajo de la descripción */
   text-align: center;
 }
 
-/* Regla CSS para todas las imágenes dentro de App-header (ajustada de 'image') */
+/* Regla CSS para todas las imágenes dentro de App-header (galería y logo si no se sobrescribe) */
 .App-header img {
   border-radius: 8px;
-  filter: grayscale(70%) sepia(10%); /* Menos saturación y un toque sepia a las imágenes */
+  filter: grayscale(60%) sepia(15%) brightness(0.9); /* Filtro más sutil y un poco más oscuro */
+  transition: filter 0.3s ease; /* Transición para el filtro si el logo no lo tiene */
+}
+/* Al pasar el ratón por las imágenes de la galería, puedes quitar el filtro */
+.gallery-container .gallery-image:hover {
+  filter: none; /* Elimina el filtro al pasar el ratón para ver el color original */
 }
 
+
 .App-logo {
-  /* Estilos específicos para el logo, sobrescribirán si es necesario */
-  /* Si necesitas que el logo no tenga el filtro, puedes añadir filter: none !important; aquí */
-  filter: drop-shadow(0 0 5px #555); /* Sombra más oscura para el logo */
+  height: 150px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 8px rgba(160, 128, 192, 0.6)); /* Sombra morada para el logo */
+  /* Si quieres que el logo siempre tenga color, añade: */
+  /* filter: none !important; */
 }
 
 button {
-  background-color: #333 !important; /* Botones más oscuros */
-  color: #d4d4d4 !important;
+  background-color: #383838 !important; /* Botones más oscuros */
+  color: #e0e0e0 !important;
   border: 1px solid #555 !important;
-  box-shadow: 0px 0px 8px rgba(51, 51, 51, 0.7) !important;
+  padding: 12px 25px; /* Ajuste de padding */
+  font-size: 1.1rem; /* Fuente ligeramente más pequeña */
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6) !important;
+  transition: all 0.3s ease-in-out;
 }
 button:hover {
-  background-color: #444 !important;
-  box-shadow: 0px 0px 12px rgba(68, 68, 68, 0.8) !important;
+  background-color: #4a4a4a !important; /* Un poco más claro al hover */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-2px); /* Ligero efecto de elevación */
 }
 
-/* Estilos para el contenedor principal de la galería de imágenes (el div principal dentro de App-header) */
-/* Lo he hecho más específico para que no afecte otros divs */
-.App-header > div:not(.counters-container) { /* Selecciona el div que contiene la imagen y la descripción, excluyendo el de los contadores */
-  margin-top: 40px;
-  max-width: 600px;
-  padding: 20px;
-  border: 2px solid #333; /* Borde más oscuro para la galería */
+/* --- Estilos para el CONTENEDOR PRINCIPAL DE CADA GALERÍA --- */
+.gallery-container {
+  margin-top: 50px; /* Más espacio arriba */
+  margin-bottom: 50px; /* Más espacio abajo */
+  width: 480px; /* Ancho fijo del contenedor de la imagen para 16:9 */
+  height: 270px; /* Alto fijo del contenedor de la imagen para 16:9 */
+  padding: 15px; /* Menos padding interno para priorizar el tamaño de la imagen */
+  border: 1px solid #7a5a8a; /* Borde más distintivo (lavanda/ciruela) */
   border-radius: 10px;
   position: relative;
-  background-color: #222; /* Fondo oscuro para la galería */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #1f1f1f; /* Fondo muy oscuro para el espacio de la imagen */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+  overflow: hidden; /* Asegura que no haya desbordamiento */
 }
-/* Estilos para los títulos dentro de la galería (h2) */
-.App-header > div h2 { /* Selector más específico para h2 dentro de la galería */
-    color: #b3b3b3; /* Color más apagado para el título de la imagen */
-    margin-top: 15px;
+
+/* Contenedor del contenido interno de la galería para animaciones (imagen y título) */
+.gallery-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative; /* Asegura que la imagen y el título se posicionen correctamente */
+}
+
+/* IMAGEN DENTRO DE LA GALERÍA */
+.gallery-image {
+  max-width: 100%; /* Ajusta al ancho del contenedor */
+  max-height: 100%; /* Ajusta al alto del contenedor */
+  width: auto; /* Mantiene la relación de aspecto */
+  height: auto; /* Mantiene la relación de aspecto */
+  object-fit: contain; /* Escala para que quepa, mostrando fondo si es necesario */
+  border-radius: 6px; /* Bordes suaves */
+  display: block;
+  margin-bottom: 10px; /* Espacio entre imagen y título H2 */
+  /* El filtro ya está en .App-header img, puedes quitarlo de aquí si lo quieres global */
+}
+
+/* Título de la imagen dentro de la galería (h2) */
+.gallery-container h2 {
+  color: #c9a4de; /* Color del título de la galería */
+  margin-top: 0; /* Asegura que no tenga margen superior excesivo */
+  font-size: 1.3rem; /* Tamaño de fuente ligeramente más grande */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 
+/* Flechas de navegación de la galería */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(60, 60, 60, 0.6); /* Gris más oscuro semitransparente */
+  color: #e0e0e0; /* Color de flecha claro */
+  border: none;
+  padding: 10px 18px; /* Ajuste de padding */
+  font-size: 1.8rem; /* Tamaño de flecha más grande */
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 5;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5); /* Sombra para que destaquen */
+}
+
+.nav-arrow:hover {
+  background-color: rgba(90, 90, 90, 0.8);
+  transform: translateY(-50%) scale(1.1); /* Efecto de crecimiento al pasar el ratón */
+}
+
+.left-arrow {
+  left: -20px; /* Sale un poco del contenedor */
+}
+
+.right-arrow {
+  right: -20px; /* Sale un poco del contenedor */
+}
+
+/* Tooltip de descripción */
 .image-description-tooltip {
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro para el tooltip */
-  color: #d4d4d4;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
+  background-color: rgba(15, 15, 15, 0.95); /* Fondo casi negro para el tooltip */
+  color: #b0b0b0;
+  padding: 12px 18px; /* Más padding */
+  border-radius: 8px;
+  font-size: 0.95rem; /* Fuente ligeramente más grande */
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.6); /* Sombra más suave y extendida */
+  border: 1px solid #404040; /* Borde sutil para el tooltip */
+  z-index: 10;
+  /* Posicionamiento y opacidad inicial manejados por Framer Motion */
 }
 
-/* El pie de página */
-.App-header p:last-child { /* El pie de página */
-    color: #777; /* Gris más oscuro para el pie de página */
-    margin-top: 50px; /* Asegura el margen */
+/* Pie de página */
+.App-header p:last-child {
+  color: #888; /* Gris más oscuro para el pie de página */
+  font-size: 0.85rem; /* Tamaño ligeramente más pequeño */
+  margin-top: 60px; /* Más espacio superior */
 }
 
 /* --- ESTILOS CLAVE PARA EL LOOK DIGITAL DEL CRONÓMETRO (Elegante) --- */
 .digital-cronometer-display {
-  font-family: 'Press Start 2P', 'Courier New', monospace; /* ¡La fuente digital! */
-  font-size: 2.2rem; /* Números más grandes para mayor impacto */
-  color: #98fb98; /* Verde menta o esmeralda claro (más sofisticado) */
-  background-color: #1c1c1c; /* Fondo más oscuro para el display */
-  padding: 10px 15px; /* Más padding */
-  border-radius: 8px; /* Bordes ligeramente más suaves */
-  letter-spacing: 4px; /* Mayor espaciado entre dígitos */
-  text-shadow: 0 0 10px rgba(152, 251, 152, 0.7); /* Resplandor más suave y prominente */
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  font-size: 2.3rem; /* Ligeramente más grande */
+  color: #98fb98; /* Verde menta */
+  background-color: #1a1a1a; /* Fondo más oscuro para el display */
+  padding: 12px 18px; /* Más padding */
+  border-radius: 10px; /* Bordes más suaves */
+  letter-spacing: 5px; /* Más espaciado entre dígitos */
+  text-shadow: 0 0 12px rgba(152, 251, 152, 0.8); /* Resplandor más intenso */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px; /* Más espacio entre los bloques D, H, M, S */
-  border: 1px solid #66bb6a; /* Borde sutil que complementa el color */
-  margin-top: 10px; /* Asegura espacio entre el título y los números */
+  gap: 18px; /* Más espacio entre los bloques D, H, M, S */
+  border: 1px solid #72cc72; /* Borde verde más brillante */
+  margin-top: 15px; /* Más espacio debajo del título del contador */
 }
 
 .digital-cronometer-display span {
   display: inline-block;
-  min-width: 45px; /* Ancho mínimo para cada número */
+  min-width: 50px; /* Ancho mínimo ajustado */
   text-align: center;
-  /* Opcional: para un efecto de segmento apagado detrás del número */
-  /* Si quieres esto, borra el comentario y ajusta el color: */
-  /* position: relative; */
 }
-/*
-.digital-cronometer-display span::before {
-    content: '88';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: rgba(152, 251, 152, 0.1);
-    z-index: -1;
-    text-shadow: none;
-}
-*/
 
 .digital-cronometer-display .unit {
-  font-size: 0.8rem; /* Tamaño de las unidades (D, H, M, S) */
-  color: #a5d6a7; /* Un verde más apagado para las unidades */
-  background-color: transparent;
-  padding: 0;
-  margin-left: -8px; /* Ajusta este valor si el `letter-spacing` cambia */
-  min-width: unset;
-  align-self: flex-end; /* Alinea las unidades a la parte inferior del número */
+  font-size: 0.85rem; /* Tamaño de las unidades ajustado */
+  color: #b0d9b0; /* Verde más claro para las unidades */
+  margin-left: -10px; /* Ajuste el margen */
+  align-self: flex-end;
 }
 
-/* Ajustes menores al contenedor de contadores para mejor espaciado */
+/* Contenedor de todos los contadores */
 .counters-container {
-  padding: 25px; /* Más padding interno */
-  margin-top: 40px; /* Más espacio arriba */
-  margin-bottom: 40px; /* Más espacio abajo */
-  background-color: #2e3034; /* Fondo un poco más claro y sutil */
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4); /* Sombra más suave */
+  padding: 30px; /* Más padding interno */
+  margin-top: 60px; /* Más espacio arriba */
+  margin-bottom: 60px; /* Más espacio abajo */
+  background-color: #262626; /* Fondo más oscuro para el contenedor */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Sombra más definida */
+  border: 1px solid #404040; /* Borde sutil */
 }
 
 .counter-item {
-  margin-bottom: 20px; /* Más espacio entre cada cronómetro */
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria sutil */
+  margin-bottom: 25px; /* Más espacio entre cada cronómetro */
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Línea divisoria más visible */
 }
 .counter-item:last-child {
   margin-bottom: 0;
@@ -174,17 +247,18 @@ button:hover {
 }
 
 .counter-title {
-    font-family: 'Times New Roman', serif; /* O la fuente que elijas para títulos normales */
-    font-size: 1.1rem !important; /* Tamaño del título del contador */
-    color: #a080c0 !important; /* Color de título gótico */
-    margin-bottom: 5px !important;
-    letter-spacing: 1px !important;
-    text-align: center; /* Asegura el centrado del título del contador */
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem !important; /* Título del contador más grande */
+    color: #c9a4de !important; /* Color lavanda/ciruela */
+    margin-bottom: 8px !important;
+    letter-spacing: 1.5px !important;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.countdown-finalizado { /* Este estilo se usa si el contador llegara a cero (en cuenta regresiva), pero como es cronómetro, no lo verás */
+.countdown-finalizado {
     font-family: 'Times New Roman', serif;
-    font-size: 1.5rem !important;
+    font-size: 1.6rem !important;
     color: #e60000 !important;
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
     margin-top: 10px !important;

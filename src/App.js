@@ -1,69 +1,134 @@
 import './App.css';
 import { motion } from 'framer-motion';
 import keybladeLogo from './keyblade.png';
-// Asegúrate de que 'useState', 'useRef' y ¡'useEffect' estén importados!
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
+// --- ¡IMPORTAMOS EL COMPONENTE Gallery! ---
+import Gallery from './Galeria'; // <--- ASEGÚRATE QUE ESTA LÍNEA ESTÉ AQUÍ
 
 // =========================================================
-// ¡TU GALERÍA DE IMÁGENES!
+// ¡GALERÍA 1: "Cosas que aprendí y me gustan de ti" !
 // =========================================================
-const galeriaContenido = [
+const galeriaContenido_Aprendi = [
   {
-    idFoto: 'dante-gif', // ID para conectar
+    idFoto: 'dante-gif', // ID para conectar con la música de esta galería
     imagen: 'https://i.imgur.com/9AqmSIY.gif',
-    titulo: 'Dante',
-    descripcion: 'Dante es de mis personajes favoritos, no importa que tan mal se encuentre, simplemente hace un chiste y continúa con su pesar.',
+    titulo: 'Dante - Resiliencia',
+    descripcion: 'De ti he aprendido la resiliencia, cómo afrontar cualquier situación con una sonrisa y seguir adelante, incluso en los momentos más difíciles.',
   },
   {
-    idFoto: 'hack', // Otro ID para otra imagen
+    idFoto: 'hack', // ID para conectar
     imagen: 'https://i.imgur.com/wfdz7xY.jpeg',
-    titulo: 'Programación',
-    descripcion: 'La programación es una de mis pasiones, me encanta crear cosas nuevas y resolver problemas. He programado desde que tenía 13 años, una de mis pasiones.',
+    titulo: 'Programación - Pasión',
+    descripcion: 'Tu pasión por lo que haces me inspira a ser mejor. Me gusta cómo te entregas a tus intereses con tanta dedicación y alegría.',
+  },
+  // Añade más ítems para esta galería aquí
+];
+
+const listaMusica_Aprendi = [
+  {
+    id: 'm1_aprendi',
+    nombre: 'Devil May Cry', // Canción para la primera galería
+    archivo: '/audio/Devil May Cry.mp3',
+    idFoto: 'dante-gif',
+  },
+  {
+    id: 'm2_aprendi',
+    nombre: 'Hackers', // Otra canción para la primera galería
+    archivo: '/audio/Hackers.mp3',
+    idFoto: 'hack',
+  },
+  // Añade más canciones para esta galería
+];
+
+// =========================================================
+// ¡GALERÍA 2: "Detalles de mí que me gustaría que sepas"!
+// =========================================================
+const galeriaContenido_Detalles = [
+  {
+    idFoto: 'kiminidotoke-ending', // ID para conectar
+    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
+    titulo: 'Kimi ni Todoke - Sensibilidad',
+    descripcion: 'A veces soy más sensible de lo que muestro. Las historias y las emociones me conmueven profundamente, al igual que los pequeños detalles de la vida.',
+  },
+  {
+    idFoto: 'otaku-hobby', // Nuevo ID, asegúrate de tener la imagen y música
+    imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
+    titulo: 'Mi Mundo Otaku - Mi Refugio',
+    descripcion: 'Mis hobbies "nerd" son una parte fundamental de quien soy. En ellos encuentro confort, inspiración y una forma de desconectar del mundo.',
+  },
+  // Añade más ítems para esta galería aquí
+];
+
+const listaMusica_Detalles = [
+  {
+    id: 'm1_detalles',
+    nombre: 'Kiminidotoke Ending',
+    archivo: '/audio/kiminidotoke ending.mp3',
+    idFoto: 'kiminidotoke-ending',
+  },
+  {
+    id: 'm2_detalles',
+    nombre: 'Melodía Reflexiva',
+    archivo: '/audio/otra_reflexiva.mp3', 
+    idFoto: 'otaku-hobby',
   },
 ];
 
 // =========================================================
-// ¡TU LISTA DE MÚSICA!
+// ¡GALERÍA 3: "Lo que siento por ti"!
 // =========================================================
-const listaMusica = [
+const galeriaContenido_Sentimientos = [
   {
-    id: 'm1',
-    nombre: 'Devil May Cry',
-    archivo: '/audio/Devil May Cry.mp3', // Asegúrate de que el nombre del archivo MP3 sea exacto
-    idFoto: 'dante-gif', // Conexión con la imagen de Dante
+    idFoto: 'corazon-flor', // Nuevo ID
+    imagen: 'https://i.imgur.com/ejemplo_corazon.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
+    titulo: '',
+    descripcion: '',
   },
   {
-    id: 'm2',
-    nombre: 'Hackers',
-    archivo: '/audio/Hackers.mp3', // Nombre del archivo MP3
-    idFoto: 'hack', // Conexión con la imagen de Programación
+    idFoto: 'futuro-compartido', // Nuevo ID
+    imagen: 'https://i.imgur.com/ejemplo_futuro.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
+    titulo: '',
+    descripcion: '',
   },
+  // Añade más ítems para esta galería aquí
 ];
+
+const listaMusica_Sentimientos = [
+  {
+    id: 'm1_sentimientos',
+    nombre: 'Balada Profunda', // Canción para la tercera galería
+    archivo: '/audio/balada_profunda.mp3', // <--- ¡CAMBIA ESTA CANCIÓN!
+    idFoto: 'corazon-flor',
+  },
+  {
+    id: 'm2_sentimientos',
+    nombre: 'Nuestra Melodía', // Otra canción para la tercera galería
+    archivo: '/audio/nuestra_melodia.mp3', // <--- ¡CAMBIA ESTA CANCIÓN!
+    idFoto: 'futuro-compartido',
+  },
+  // Añade más canciones para esta galería
+];
+
 
 function App() {
-  // Estados de la galería y música
-  const [indiceContenidoActual, setIndiceContenidoActual] = useState(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [cancionActual, setCancionActual] = useState(null);
-  const audioRef = useRef(null);
-
-  // === ESTADOS PARA LOS CRONÓMETROS ===
-  // Usaremos un único estado para forzar la actualización de todos los cronómetros
+  // === ESTADO ÚNICO PARA FORZAR LA ACTUALIZACIÓN DE LOS CRONÓMETROS ===
   const [currentTime, setCurrentTime] = useState(Date.now());
 
   // === FECHAS DE INICIO DE LOS CRONÓMETROS (¡AJUSTA ESTAS FECHAS A EVENTOS PASADOS REALES!) ===
-  // Formato ISO: YYYY-MM-DDTHH:mm:ss
-  // Hora actual en Ciudad Madero, Tam, MX: Sábado, 19 de julio de 2025, 2:10 PM CST
-  const FECHA_INICIO_HABLAR = new Date('2025-05-04T18:30:00').getTime(); // Ejemplo: Hace ~29 días
-  const FECHA_INICIO_LLAMADA = new Date('2025-06-06T22:18:00').getTime(); // Ejemplo: Hace ~8 días
-  const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T14:27:00').getTime(); // Ejemplo: Hace ~1 día
+  // Formato ISO (más seguro): YYYY-MM-DDTHH:mm:ssZ
+  // Z significa UTC. Para tu zona (CST = UTC-6), a tu hora local le SUMAS 6 horas para obtener UTC.
+  // Ejemplo: Hoy es Lunes, 21 de Julio de 2025, 4:05 PM CST (hora actual)
+  // 4:05 PM CST = 22:05 UTC
+  const FECHA_INICIO_HABLAR = new Date('2025-05-04T23:30:00Z').getTime(); // 4 de Mayo, 6:30 PM CST
+  const FECHA_INICIO_LLAMADA = new Date('2025-06-07T04:18:00Z').getTime(); // 6 de Junio, 10:18 PM CST
+  const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T22:27:00Z').getTime(); // 10 de Junio, 4:27 PM CST
 
   // === FUNCIÓN PARA CALCULAR Y FORMATEAR TIEMPO CRONÓMETRO ===
-  // Esta función ahora recibe el 'momentoActual' (que es el currentTime actualizado cada segundo)
+  // Recibe la fecha de inicio y el momento actual (currentTime)
   const formatCronometro = (fechaInicio, momentoActual) => {
-    const diferencia = momentoActual - fechaInicio; // Diferencia en milisegundos
+    const diferencia = momentoActual - fechaInicio;
 
-    // Si la fecha es futura, muestra '00D00H00M00S'
     if (diferencia < 0) {
       return (
         <>
@@ -80,9 +145,8 @@ function App() {
     const horasTotales = Math.floor(minutosTotales / 60);
     const diasTotales = Math.floor(horasTotales / 24);
 
-    const formatNum = (num) => (num < 10 ? '0' + num : num); // Función auxiliar para añadir cero inicial
+    const formatNum = (num) => (num < 10 ? '0' + num : num);
 
-    // Retorna el JSX formateado para el cronómetro
     return (
       <>
         <span>{formatNum(diasTotales)}</span><span className="unit">D</span>
@@ -96,64 +160,15 @@ function App() {
   // === useEffect para actualizar el estado 'currentTime' cada segundo ===
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(Date.now()); // Actualiza el estado currentTime cada segundo
+      setCurrentTime(Date.now());
     }, 1000); // Cada 1000 milisegundos (1 segundo)
 
     // Limpieza: detiene el intervalo cuando el componente se desmonta
     return () => clearInterval(intervalId);
   }, []); // El array vacío [] asegura que este efecto se ejecuta solo una vez al inicio
 
-
-  // Lógica de handleClick (IMAGEN Y MÚSICA)
-  const handleClick = () => {
-    if (listaMusica.length === 0) {
-      alert("No hay canciones en la lista.");
-      return;
-    }
-
-    const randomIndexMusica = Math.floor(Math.random() * listaMusica.length);
-    const cancionSeleccionada = listaMusica[randomIndexMusica];
-    setCancionActual(cancionSeleccionada);
-
-    const imagenAsociada = galeriaContenido.find(
-      (img) => img.idFoto === cancionSeleccionada.idFoto
-    );
-
-    if (imagenAsociada) {
-      const indiceParaMostrar = galeriaContenido.findIndex(
-        (img) => img.idFoto === imagenAsociada.idFoto
-      );
-      if (indiceParaMostrar !== -1) {
-        setIndiceContenidoActual(indiceParaMostrar);
-      } else {
-        setIndiceContenidoActual(null);
-        console.warn(
-          `ADVERTENCIA: No se encontró imagen en 'galeriaContenido' con idFoto: ${cancionSeleccionada.idFoto} para la canción "${cancionSeleccionada.nombre}".`
-        );
-      }
-    } else {
-      setIndiceContenidoActual(null);
-      console.warn(
-        `ADVERTENCIA: La canción "${cancionSeleccionada.nombre}" no tiene un 'idFoto' asignado o la imagen asociada no fue encontrada.`
-      );
-    }
-
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.load();
-      audioRef.current.play().catch((e) =>
-        console.error(
-          "Error al intentar reproducir audio (probablemente autoplay bloqueado):",
-          e
-        )
-      );
-    }
-  };
-
-  const contenidoAMostrar =
-    indiceContenidoActual !== null
-      ? galeriaContenido[indiceContenidoActual]
-      : null;
+  // NOTA: Toda la lógica de handleClick, cancionActual, audioRef, contenidoAMostrar
+  // se ha movido al componente Gallery. Aquí ya no se gestiona directamente.
 
   return (
     <div className="App">
@@ -166,11 +181,32 @@ function App() {
           style={{ height: '150px', marginBottom: '20px' }}
         />
 
-        <h1>¡Bienvenido a Mi Página Web Personal!</h1>
-        <p>Explora lo que podemos crear con React y animaciones.</p>
+        <h1>¡Un Mensaje Secreto Para Ti!</h1> {/* <--- TÍTULO DE CONFESIÓN */}
+        <p>
+          He creado este pequeño espacio para compartir algunas cosas que he sentido y pensado.<br/>
+          Espero que lo explores con calma y corazón abierto.
+        </p>
 
         {/* ========================================================= */}
-        {/* ¡CONTADORES CRONÓMETRO CON ESTILO DIGITAL! (Directamente en App.js) */}
+        {/* ¡GALERÍA 1: "Cosas que aprendí y me gustan de ti"! */}
+        {/* ========================================================= */}
+        <h2 className="gallery-section-title">Cosas que aprendí y me gustan de ti</h2>
+        <Gallery galleryItems={galeriaContenido_Aprendi} musicList={listaMusica_Aprendi} />
+
+        {/* ========================================================= */}
+        {/* ¡GALERÍA 2: "Detalles de mí que me gustaría que sepas"! */}
+        {/* ========================================================= */}
+        <h2 className="gallery-section-title">Detalles de mí que me gustaría que sepas</h2>
+        <Gallery galleryItems={galeriaContenido_Detalles} musicList={listaMusica_Detalles} />
+
+        {/* ========================================================= */}
+        {/* ¡GALERÍA 3: "Lo que siento por ti"! */}
+        {/* ========================================================= */}
+        <h2 className="gallery-section-title"></h2>
+        <Gallery galleryItems={galeriaContenido_Sentimientos} musicList={listaMusica_Sentimientos} />
+
+        {/* ========================================================= */}
+        {/* ¡CONTADORES CRONÓMETRO CON ESTILO DIGITAL! */}
         {/* ========================================================= */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -178,11 +214,12 @@ function App() {
           transition={{ delay: 0.5, duration: 1 }}
           className="counters-container"
         >
+          <h2 className="counter-main-title">Momentos que Atesoro</h2> {/* Título para el bloque de contadores */}
           {/* Contador para "Desde que empezamos a hablar" */}
           <div className="counter-item">
             <p className="counter-title">Desde que empezamos a hablar:</p>
             <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_HABLAR, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+              {formatCronometro(FECHA_INICIO_HABLAR, currentTime)}
             </div>
           </div>
 
@@ -190,7 +227,7 @@ function App() {
           <div className="counter-item">
             <p className="counter-title">Desde nuestra primera llamada:</p>
             <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_LLAMADA, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+              {formatCronometro(FECHA_INICIO_LLAMADA, currentTime)}
             </div>
           </div>
 
@@ -198,65 +235,11 @@ function App() {
           <div className="counter-item">
             <p className="counter-title">Desde OtakuFest:</p>
             <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_OTAKUFEST, currentTime)} {/* <--- ¡PASAMOS currentTime AQUÍ! */}
+              {formatCronometro(FECHA_INICIO_OTAKUFEST, currentTime)}
             </div>
           </div>
         </motion.div>
         {/* --- FIN CONTADORES --- */}
-
-        {/* Botón unificado */}
-        <motion.button
-          initial={{ scale: 1, opacity: 0.5 }}
-          animate={{ scale: 1.1, opacity: 1 }}
-          transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-          whileHover={{ scale: 1.2, boxShadow: "0px 0px 8px rgb(255,255,255)" }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleClick}
-          style={{
-            padding: '15px 30px',
-            fontSize: '1.2rem',
-            borderRadius: '8px',
-            border: 'none',
-            backgroundColor: '#61dafb', // Color azul por defecto para el botón principal
-            color: 'white',
-            cursor: 'pointer',
-            marginTop: '20px'
-          }}
-        >
-          {cancionActual ? `Ver Siguiente: ${cancionActual.nombre}` : 'Iniciar Experiencia'}
-        </motion.button>
-
-        {/* Elemento de Audio oculto */}
-        <audio ref={audioRef} controls style={{ display: 'none' }}>
-          {cancionActual && <source src={cancionActual.archivo} type="audio/mpeg" />}
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-
-        {/* Sección de la galería de imágenes */}
-        {contenidoAMostrar && (
-          <motion.div
-            key={contenidoAMostrar.idFoto}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{ marginTop: '40px', maxWidth: '600px', padding: '20px', border: '1px solid #61dafb', borderRadius: '10px', position: 'relative' }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <img src={contenidoAMostrar.imagen} alt={contenidoAMostrar.titulo} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />
-            <h2 style={{ color: '#61dafb', marginTop: '15px' }}>{contenidoAMostrar.titulo}</h2>
-            {isHovered && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="image-description-tooltip"
-              >
-                <p>{contenidoAMostrar.descripcion}</p>
-              </motion.div>
-            )}
-          </motion.div>
-        )}
 
         <p style={{ marginTop: '30px', fontSize: '0.9rem' }}>
           Desarrollado con ❤️ por Jorge
