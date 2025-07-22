@@ -14,19 +14,19 @@ const galeriaContenido_Aprendi = [
     idFoto: 'dante-gif',
     imagen: 'https://i.imgur.com/9AqmSIY.gif', // Tu GIF de Dante
     titulo: 'Tu Nivel de Resiliencia',
-    descripcion: 'Eres como un personaje de videojuego al que le bajan la vida a cero, pero se levanta con un "¡Bah, solo fue un rasguño!" Me inspira esa actitud.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'hack',
     imagen: 'https://i.imgur.com/wfdz7xY.jpeg', // Tu imagen de programación
     titulo: 'La Pasión por tus Bugs',
-    descripcion: 'Me encanta cómo te sumerges en lo que te gusta. Esa obsesión por el detalle, incluso cuando te frustra, es fascinante. Un tipo de locura que aprecio.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'risas-inesperadas',
     imagen: 'https://i.imgur.com/random_laugh.jpg', // IMAGEN DE EJEMPLO: busca una imagen de alguien riendo a carcajadas, o algo abstracto que represente alegría.
     titulo: 'Tu Humor Absurdo',
-    descripcion: 'Es esa chispa inesperada que me hace soltar la carcajada en el momento menos indicado. Una señal de que no te tomas la vida demasiado en serio, y eso es genial.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
 ];
 
@@ -59,19 +59,19 @@ const galeriaContenido_Detalles = [
     idFoto: 'kiminidotoke-ending',
     imagen: 'https://i.imgur.com/FcRj5Sn.jpeg', // Tu imagen de Kimi ni Todoke
     titulo: 'Mi Lado Blando (con precaución)',
-    descripcion: 'A veces lloro con películas donde ni siquiera muere el perro. Es un detalle menor, pero ahí está. Soy un oso de peluche gigante por dentro, a veces.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'otaku-hobby',
     imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un setup gamer/otaku minimalista o un personaje pensativo.
     titulo: 'Mi Santuario Friki',
-    descripcion: 'Mis hobbies "nerd" son mi zona de confort. Es donde me desconecto del mundo y me recargo. Si me ves con audífonos y en modo ermitaño, es el estado óptimo.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'cafe-noche',
     imagen: 'https://i.imgur.com/random_coffee.jpg', // IMAGEN DE EJEMPLO: busca un café humeante en la noche, o una vista nocturna con luces de ciudad.
     titulo: 'Noches de Insomnio Productivo',
-    descripcion: 'Mi cerebro a veces no para, especialmente de noche. Es cuando tengo mis mejores ideas... o las más extrañas. Prepárate para mensajes a las 3 AM si estás cerca.',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
 ];
 
@@ -103,39 +103,39 @@ const galeriaContenido_Sentimientos = [
   {
     idFoto: 'corazon-flor',
     imagen: 'https://i.imgur.com/ejemplo_corazon.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un corazón abstracto, o una flor delicada.
-    titulo: 'La Inevitable Atracción',
-    descripcion: 'Es curioso, ¿sabes? Al principio no lo vi venir, pero de repente, ¡boom! Una especie de fuerza de la gravedad no me deja pensar en otra cosa. Y me gusta.',
+    titulo: 'a',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'futuro-compartido',
     imagen: 'https://i.imgur.com/ejemplo_futuro.jpeg', // IMAGEN DE EJEMPLO: busca un camino nebuloso, dos siluetas bajo un cielo estrellado.
-    titulo: 'El Modo Multijugador',
-    descripcion: 'Mi vida siempre ha sido un "single player", pero contigo, no puedo evitar pensar en el modo "co-op". Las aventuras serían mucho mejores si las jugamos juntos. Solo digo.',
+    titulo: 'a',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'confesion-directa',
     imagen: 'https://i.imgur.com/random_confession.jpg', // IMAGEN DE EJEMPLO: una luz sutil, un cielo al amanecer, o algo minimalista pero profundo.
-    titulo: 'Eres la Variable Que Faltaba',
-    descripcion: 'No hay más vueltas que darle. Eres la persona que le da sentido a mis algoritmos más complejos. Siento algo fuerte por ti, algo que no puedo (ni quiero) depurar. ¿Te atreves a ser mi siguiente "feature"?',
+    titulo: 'a',
+    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
 ];
 
 const listaMusica_Sentimientos = [
   {
     id: 'm1_sentimientos',
-    nombre: 'Balada de Conexión',
+    nombre: 'a',
     archivo: '/audio/connection_ballad.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'corazon-flor',
   },
   {
     id: 'm2_sentimientos',
-    nombre: 'El Co-op Perfecto',
+    nombre: 'a',
     archivo: '/audio/coop_perfecto.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'futuro-compartido',
   },
   {
     id: 'm3_sentimientos',
-    nombre: 'La Canción Secreta',
+    nombre: 'a',
     archivo: '/audio/secret_song.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'confesion-directa',
   },
