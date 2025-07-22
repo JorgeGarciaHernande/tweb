@@ -46,7 +46,7 @@ function Gallery({ galleryItems, musicList }) {
     if (galleryItems.length > 0 && currentIndex !== null) {
       playCurrentSong(currentIndex);
     }
-  }, [currentIndex, galleryItems, musicList]); // Dependencias: se ejecuta al cambiar imagen o listas
+  }, [currentIndex, galleryItems, musicList, playCurrentSong]); // <--- ¡DEPENDENCIAS CORREGIDAS AQUÍ!
 
   // Manejadores de las flechas de navegación
   const handleNext = () => {
@@ -118,5 +118,6 @@ function Gallery({ galleryItems, musicList }) {
     </motion.div>
   );
 }
+
 
 export default Gallery;
