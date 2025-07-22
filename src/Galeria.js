@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // AnimatePresence para animaciones de salida
+import React, { useState, useEffect, useRef, useCallback } from 'react'; // Asegúrate de que useCallback esté aquí
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Componente Gallery
 // Recibe:
@@ -10,8 +10,9 @@ function Gallery({ galleryItems, musicList }) {
   const [isHovered, setIsHovered] = useState(false); // Para el tooltip de descripción
   const audioRef = useRef(null); // Ref para el elemento de audio
 
-  // Función para reproducir la canción asociada a la imagen actual
-  const playCurrentSong = (index) => {
+  // Función para reproducir la canción asociada a la imagen actual (AHORA CON useCallback)
+  // Esta función debe ser memorizada con useCallback porque se usa como dependencia en useEffect.
+  const playCurrentSong = useCallback((index) => {
     // Asegurarse de que haya items en la galería y que el índice sea válido
     if (galleryItems.length === 0 || index === null || index < 0 || index >= galleryItems.length) {
       if (audioRef.current) {
@@ -38,7 +39,7 @@ function Gallery({ galleryItems, musicList }) {
       audioRef.current.src = ""; // Limpia la fuente
       console.warn(`No se encontró canción para la imagen con idFoto: ${imagenActual.idFoto}`);
     }
-  };
+  }, [galleryItems, musicList, audioRef]); // Dependencias de useCallback: la función depende de estas variables
 
   // useEffect para manejar la reproducción de música cuando cambia la imagen
   useEffect(() => {
@@ -46,7 +47,7 @@ function Gallery({ galleryItems, musicList }) {
     if (galleryItems.length > 0 && currentIndex !== null) {
       playCurrentSong(currentIndex);
     }
-  }, [currentIndex, galleryItems, musicList, playCurrentSong]); // <--- ¡DEPENDENCIAS CORREGIDAS AQUÍ!
+  }, [currentIndex, galleryItems, musicList, playCurrentSong]); // Dependencias del useEffect: playCurrentSong está aquí (¡CORRECTO!)
 
   // Manejadores de las flechas de navegación
   const handleNext = () => {
@@ -118,6 +119,5 @@ function Gallery({ galleryItems, musicList }) {
     </motion.div>
   );
 }
-
 
 export default Gallery;
