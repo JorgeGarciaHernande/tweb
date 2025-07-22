@@ -4,41 +4,51 @@ import keybladeLogo from './keyblade.png';
 import React, { useState, useEffect } from 'react';
 
 // --- ¡IMPORTAMOS EL COMPONENTE Gallery! ---
-import Gallery from './Galeria'; // <--- ASEGÚRATE QUE ESTA LÍNEA ESTÉ AQUÍ
+import Gallery from './Galeria'; // Asegúrate de que Galeria.js (o Gallery.js) exista
 
 // =========================================================
 // ¡GALERÍA 1: "Cosas que aprendí y me gustan de ti" !
 // =========================================================
 const galeriaContenido_Aprendi = [
   {
-    idFoto: 'dante-gif', // ID para conectar con la música de esta galería
-    imagen: 'https://i.imgur.com/9AqmSIY.gif',
-    titulo: 'Dante - Resiliencia',
-    descripcion: 'De ti he aprendido la resiliencia, cómo afrontar cualquier situación con una sonrisa y seguir adelante, incluso en los momentos más difíciles.',
+    idFoto: 'dante-gif',
+    imagen: 'https://i.imgur.com/9AqmSIY.gif', // Tu GIF de Dante
+    titulo: 'Tu Nivel de Resiliencia',
+    descripcion: 'Eres como un personaje de videojuego al que le bajan la vida a cero, pero se levanta con un "¡Bah, solo fue un rasguño!" Me inspira esa actitud.',
   },
   {
-    idFoto: 'hack', // ID para conectar
-    imagen: 'https://i.imgur.com/wfdz7xY.jpeg',
-    titulo: 'Programación - Pasión',
-    descripcion: 'Tu pasión por lo que haces me inspira a ser mejor. Me gusta cómo te entregas a tus intereses con tanta dedicación y alegría.',
+    idFoto: 'hack',
+    imagen: 'https://i.imgur.com/wfdz7xY.jpeg', // Tu imagen de programación
+    titulo: 'La Pasión por tus Bugs',
+    descripcion: 'Me encanta cómo te sumerges en lo que te gusta. Esa obsesión por el detalle, incluso cuando te frustra, es fascinante. Un tipo de locura que aprecio.',
   },
-  // Añade más ítems para esta galería aquí
+  {
+    idFoto: 'risas-inesperadas',
+    imagen: 'https://i.imgur.com/random_laugh.jpg', // IMAGEN DE EJEMPLO: busca una imagen de alguien riendo a carcajadas, o algo abstracto que represente alegría.
+    titulo: 'Tu Humor Absurdo',
+    descripcion: 'Es esa chispa inesperada que me hace soltar la carcajada en el momento menos indicado. Una señal de que no te tomas la vida demasiado en serio, y eso es genial.',
+  },
 ];
 
 const listaMusica_Aprendi = [
   {
     id: 'm1_aprendi',
-    nombre: 'Devil May Cry', // Canción para la primera galería
+    nombre: 'Devil May Cry',
     archivo: '/audio/Devil May Cry.mp3',
     idFoto: 'dante-gif',
   },
   {
     id: 'm2_aprendi',
-    nombre: 'Hackers', // Otra canción para la primera galería
+    nombre: 'Hackers',
     archivo: '/audio/Hackers.mp3',
     idFoto: 'hack',
   },
-  // Añade más canciones para esta galería
+  {
+    id: 'm3_aprendi',
+    nombre: 'Melodía Curiosa',
+    archivo: '/audio/curious_melody.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
+    idFoto: 'risas-inesperadas',
+  },
 ];
 
 // =========================================================
@@ -46,18 +56,23 @@ const listaMusica_Aprendi = [
 // =========================================================
 const galeriaContenido_Detalles = [
   {
-    idFoto: 'kiminidotoke-ending', // ID para conectar
-    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
-    titulo: 'Kimi ni Todoke - Sensibilidad',
-    descripcion: 'A veces soy más sensible de lo que muestro. Las historias y las emociones me conmueven profundamente, al igual que los pequeños detalles de la vida.',
+    idFoto: 'kiminidotoke-ending',
+    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg', // Tu imagen de Kimi ni Todoke
+    titulo: 'Mi Lado Blando (con precaución)',
+    descripcion: 'A veces lloro con películas donde ni siquiera muere el perro. Es un detalle menor, pero ahí está. Soy un oso de peluche gigante por dentro, a veces.',
   },
   {
-    idFoto: 'otaku-hobby', // Nuevo ID, asegúrate de tener la imagen y música
-    imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
-    titulo: 'Mi Mundo Otaku - Mi Refugio',
-    descripcion: 'Mis hobbies "nerd" son una parte fundamental de quien soy. En ellos encuentro confort, inspiración y una forma de desconectar del mundo.',
+    idFoto: 'otaku-hobby',
+    imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un setup gamer/otaku minimalista o un personaje pensativo.
+    titulo: 'Mi Santuario Friki',
+    descripcion: 'Mis hobbies "nerd" son mi zona de confort. Es donde me desconecto del mundo y me recargo. Si me ves con audífonos y en modo ermitaño, es el estado óptimo.',
   },
-  // Añade más ítems para esta galería aquí
+  {
+    idFoto: 'cafe-noche',
+    imagen: 'https://i.imgur.com/random_coffee.jpg', // IMAGEN DE EJEMPLO: busca un café humeante en la noche, o una vista nocturna con luces de ciudad.
+    titulo: 'Noches de Insomnio Productivo',
+    descripcion: 'Mi cerebro a veces no para, especialmente de noche. Es cuando tengo mis mejores ideas... o las más extrañas. Prepárate para mensajes a las 3 AM si estás cerca.',
+  },
 ];
 
 const listaMusica_Detalles = [
@@ -69,9 +84,15 @@ const listaMusica_Detalles = [
   },
   {
     id: 'm2_detalles',
-    nombre: 'Melodía Reflexiva',
-    archivo: '/audio/otra_reflexiva.mp3', 
+    nombre: 'Melodía de Códice',
+    archivo: '/audio/codex_melody.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'otaku-hobby',
+  },
+  {
+    id: 'm3_detalles',
+    nombre: 'Nocturno Urbano',
+    archivo: '/audio/urban_nocturne.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
+    idFoto: 'cafe-noche',
   },
 ];
 
@@ -80,34 +101,44 @@ const listaMusica_Detalles = [
 // =========================================================
 const galeriaContenido_Sentimientos = [
   {
-    idFoto: 'corazon-flor', // Nuevo ID
-    imagen: 'https://i.imgur.com/ejemplo_corazon.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
-    titulo: '',
-    descripcion: '',
+    idFoto: 'corazon-flor',
+    imagen: 'https://i.imgur.com/ejemplo_corazon.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un corazón abstracto, o una flor delicada.
+    titulo: 'La Inevitable Atracción',
+    descripcion: 'Es curioso, ¿sabes? Al principio no lo vi venir, pero de repente, ¡boom! Una especie de fuerza de la gravedad no me deja pensar en otra cosa. Y me gusta.',
   },
   {
-    idFoto: 'futuro-compartido', // Nuevo ID
-    imagen: 'https://i.imgur.com/ejemplo_futuro.jpeg', // <--- ¡CAMBIA ESTA IMAGEN!
-    titulo: '',
-    descripcion: '',
+    idFoto: 'futuro-compartido',
+    imagen: 'https://i.imgur.com/ejemplo_futuro.jpeg', // IMAGEN DE EJEMPLO: busca un camino nebuloso, dos siluetas bajo un cielo estrellado.
+    titulo: 'El Modo Multijugador',
+    descripcion: 'Mi vida siempre ha sido un "single player", pero contigo, no puedo evitar pensar en el modo "co-op". Las aventuras serían mucho mejores si las jugamos juntos. Solo digo.',
   },
-  // Añade más ítems para esta galería aquí
+  {
+    idFoto: 'confesion-directa',
+    imagen: 'https://i.imgur.com/random_confession.jpg', // IMAGEN DE EJEMPLO: una luz sutil, un cielo al amanecer, o algo minimalista pero profundo.
+    titulo: 'Eres la Variable Que Faltaba',
+    descripcion: 'No hay más vueltas que darle. Eres la persona que le da sentido a mis algoritmos más complejos. Siento algo fuerte por ti, algo que no puedo (ni quiero) depurar. ¿Te atreves a ser mi siguiente "feature"?',
+  },
 ];
 
 const listaMusica_Sentimientos = [
   {
     id: 'm1_sentimientos',
-    nombre: 'Balada Profunda', // Canción para la tercera galería
-    archivo: '/audio/balada_profunda.mp3', // <--- ¡CAMBIA ESTA CANCIÓN!
+    nombre: 'Balada de Conexión',
+    archivo: '/audio/connection_ballad.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'corazon-flor',
   },
   {
     id: 'm2_sentimientos',
-    nombre: 'Nuestra Melodía', // Otra canción para la tercera galería
-    archivo: '/audio/nuestra_melodia.mp3', // <--- ¡CAMBIA ESTA CANCIÓN!
+    nombre: 'El Co-op Perfecto',
+    archivo: '/audio/coop_perfecto.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
     idFoto: 'futuro-compartido',
   },
-  // Añade más canciones para esta galería
+  {
+    id: 'm3_sentimientos',
+    nombre: 'La Canción Secreta',
+    archivo: '/audio/secret_song.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
+    idFoto: 'confesion-directa',
+  },
 ];
 
 
@@ -160,15 +191,12 @@ function App() {
   // === useEffect para actualizar el estado 'currentTime' cada segundo ===
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(Date.now());
+      setCurrentTime(Date.now()); // Actualiza el estado currentTime cada segundo
     }, 1000); // Cada 1000 milisegundos (1 segundo)
 
     // Limpieza: detiene el intervalo cuando el componente se desmonta
     return () => clearInterval(intervalId);
   }, []); // El array vacío [] asegura que este efecto se ejecuta solo una vez al inicio
-
-  // NOTA: Toda la lógica de handleClick, cancionActual, audioRef, contenidoAMostrar
-  // se ha movido al componente Gallery. Aquí ya no se gestiona directamente.
 
   return (
     <div className="App">
