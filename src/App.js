@@ -13,19 +13,19 @@ const galeriaContenido_Aprendi = [
   {
     idFoto: 'dante-gif',
     imagen: 'https://i.imgur.com/9AqmSIY.gif', // Tu GIF de Dante
-    titulo: 'Tu Nivel de Resiliencia',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'hack',
     imagen: 'https://i.imgur.com/wfdz7xY.jpeg', // Tu imagen de programación
-    titulo: 'La Pasión por tus Bugs',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'risas-inesperadas',
     imagen: 'https://i.imgur.com/random_laugh.jpg', // IMAGEN DE EJEMPLO: busca una imagen de alguien riendo a carcajadas, o algo abstracto que represente alegría.
-    titulo: 'Tu Humor Absurdo',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
 ];
@@ -58,19 +58,19 @@ const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
     imagen: 'https://i.imgur.com/FcRj5Sn.jpeg', // Tu imagen de Kimi ni Todoke
-    titulo: 'Mi Lado Blando (con precaución)',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'otaku-hobby',
     imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un setup gamer/otaku minimalista o un personaje pensativo.
-    titulo: 'Mi Santuario Friki',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
   {
     idFoto: 'cafe-noche',
     imagen: 'https://i.imgur.com/random_coffee.jpg', // IMAGEN DE EJEMPLO: busca un café humeante en la noche, o una vista nocturna con luces de ciudad.
-    titulo: 'Noches de Insomnio Productivo',
+    titulo: 'a',
     descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
   },
 ];
