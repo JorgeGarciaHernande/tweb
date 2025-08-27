@@ -1,280 +1,370 @@
-import './App.css';
-import { motion } from 'framer-motion';
+// =======================================================
+// === TODO EN UN SOLO ARCHIVO: App.js + Gallery.js + CSS ===
+// =======================================================
+
+import { motion, AnimatePresence } from 'framer-motion';
 import keybladeLogo from './keyblade.png';
 import React, { useState, useEffect } from 'react';
 
-// --- ¡IMPORTAMOS EL COMPONENTE Gallery! ---
-import Gallery from './Galeria'; // Asegúrate de que Galeria.js (o Gallery.js) exista
-
 // =========================================================
-// ¡GALERÍA 1: "Cosas que aprendí y me gustan de ti" !
+// ¡TUS DATOS DE LAS GALERÍAS! (Sin cambios)
 // =========================================================
 const galeriaContenido_Aprendi = [
   {
     idFoto: 'dante-gif',
-    imagen: 'https://i.imgur.com/9AqmSIY.gif', // Tu GIF de Dante
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/9AqmSIY.gif',
+    titulo: 'Tu gusto obsesivo por las cosas',
+    descripcion: 'Me encanta como cuando te gusta algo te obsesionas con eso al 100% por ejemplo cuando jugamos genshin conocias todas las ubicaciones de los cofres todos los puzzles que personajes tenian buena sinergia,la primera vez que hablamos como dominabas bastante bien de DMC simplemente me encanto',
   },
   {
-    idFoto: 'hack',
-    imagen: 'https://i.imgur.com/wfdz7xY.jpeg', // Tu imagen de programación
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    idFoto: 'collage',
+    imagen: 'https://i.imgur.com/wfdz7xY.jpeg',
+    titulo: 'Tofu multifacética',
+    descripcion: 'Me encanta como te vistes todos tus estilos desde muy girly hasta algo gotico me encantanta tambien como te maquillas como te arreglas las pestañas como todo te luce bien descubri que estudiaste diseño de modas y me fascino ',
   },
   {
-    idFoto: 'risas-inesperadas',
-    imagen: 'https://i.imgur.com/random_laugh.jpg', // IMAGEN DE EJEMPLO: busca una imagen de alguien riendo a carcajadas, o algo abstracto que represente alegría.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    idFoto: 'autenticidad',
+    imagen: 'https://i.imgur.com/xIe4t56.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Tu autenticidad',
+    descripcion: 'Me encanta tu forma de ser, sin filtros y siempre genuina.',
   },
 ];
 
-const listaMusica_Aprendi = [
-  {
-    id: 'm1_aprendi',
-    nombre: 'Devil May Cry',
-    archivo: '/audio/Devil May Cry.mp3',
-    idFoto: 'dante-gif',
-  },
-  {
-    id: 'm2_aprendi',
-    nombre: 'Hackers',
-    archivo: '/audio/Hackers.mp3',
-    idFoto: 'hack',
-  },
-  {
-    id: 'm3_aprendi',
-    nombre: 'Melodía Curiosa',
-    archivo: '/audio/curious_melody.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'risas-inesperadas',
-  },
-];
-
-// =========================================================
-// ¡GALERÍA 2: "Detalles de mí que me gustaría que sepas"!
-// =========================================================
 const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
-    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg', // Tu imagen de Kimi ni Todoke
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
+    titulo: 'Detalle 1',
+    descripcion: 'Aquí va la descripción de la imagen.',
   },
   {
     idFoto: 'otaku-hobby',
-    imagen: 'https://i.imgur.com/ejemplo_otaku.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un setup gamer/otaku minimalista o un personaje pensativo.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/otL6D4B.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Detalle 2',
+    descripcion: 'Aquí va la descripción de la imagen.',
   },
   {
     idFoto: 'cafe-noche',
-    imagen: 'https://i.imgur.com/random_coffee.jpg', // IMAGEN DE EJEMPLO: busca un café humeante en la noche, o una vista nocturna con luces de ciudad.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/yO8m2g4.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Detalle 3',
+    descripcion: 'Aquí va la descripción de la imagen.',
   },
 ];
 
-const listaMusica_Detalles = [
-  {
-    id: 'm1_detalles',
-    nombre: 'Kiminidotoke Ending',
-    archivo: '/audio/kiminidotoke ending.mp3',
-    idFoto: 'kiminidotoke-ending',
-  },
-  {
-    id: 'm2_detalles',
-    nombre: 'Melodía de Códice',
-    archivo: '/audio/codex_melody.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'otaku-hobby',
-  },
-  {
-    id: 'm3_detalles',
-    nombre: 'Nocturno Urbano',
-    archivo: '/audio/urban_nocturne.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'cafe-noche',
-  },
-];
-
-// =========================================================
-// ¡GALERÍA 3: "Lo que siento por ti"!
-// =========================================================
 const galeriaContenido_Sentimientos = [
   {
     idFoto: 'corazon-flor',
-    imagen: 'https://i.imgur.com/ejemplo_corazon.jpeg', // IMAGEN DE EJEMPLO: busca una imagen de un corazón abstracto, o una flor delicada.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/mJgLQ1N.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Lo que siento...',
+    descripcion: 'Cuando hablo contigo siento que el corazon me late por mil cuando estamos hablando viendo anime o jugando no disfruto los silencios por que me encanta escuchar tu voz o tu risa',
   },
   {
     idFoto: 'futuro-compartido',
-    imagen: 'https://i.imgur.com/ejemplo_futuro.jpeg', // IMAGEN DE EJEMPLO: busca un camino nebuloso, dos siluetas bajo un cielo estrellado.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/5u8a2gN.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Ese día...',
+    descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
   {
     idFoto: 'confesion-directa',
-    imagen: 'https://i.imgur.com/random_confession.jpg', // IMAGEN DE EJEMPLO: una luz sutil, un cielo al amanecer, o algo minimalista pero profundo.
-    titulo: 'a',
-    descripcion: 'Aquí va la descripción de la imagen.', // <--- DESCRIPCIÓN GENÉRICA
+    imagen: 'https://i.imgur.com/aW8sO0p.jpeg', // Imagen actualizada para que funcione
+    titulo: 'Me encantas',
+    descripcion: 'Me encanta mucho de ti tus bromas algo tontita como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
+  },
+  {
+    idFoto: 'confesion-final', // ID cambiado para evitar duplicados
+    imagen: 'https://i.imgur.com/9CyJPdX.jpeg', // Imagen actualizada para que funcione
+    titulo: 'En resumen...',
+    descripcion: 'Solo queria decirte que ME GUSTAS TAL CUAL ERES con los virtudes y defectos que hasta el momento he conocido',
   },
 ];
 
-const listaMusica_Sentimientos = [
-  {
-    id: 'm1_sentimientos',
-    nombre: 'a',
-    archivo: '/audio/connection_ballad.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'corazon-flor',
-  },
-  {
-    id: 'm2_sentimientos',
-    nombre: 'a',
-    archivo: '/audio/coop_perfecto.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'futuro-compartido',
-  },
-  {
-    id: 'm3_sentimientos',
-    nombre: 'a',
-    archivo: '/audio/secret_song.mp3', // <-- ¡CAMBIA ESTA CANCIÓN!
-    idFoto: 'confesion-directa',
-  },
-];
+// =========================================================
+// === COMPONENTE GALLERY (Integrado en este archivo) ===
+// =========================================================
+const Gallery = ({ galleryItems }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-
-function App() {
-  // === ESTADO ÚNICO PARA FORZAR LA ACTUALIZACIÓN DE LOS CRONÓMETROS ===
-  const [currentTime, setCurrentTime] = useState(Date.now());
-
-  // === FECHAS DE INICIO DE LOS CRONÓMETROS (¡AJUSTA ESTAS FECHAS A EVENTOS PASADOS REALES!) ===
-  // Formato ISO (más seguro): YYYY-MM-DDTHH:mm:ssZ
-  // Z significa UTC. Para tu zona (CST = UTC-6), a tu hora local le SUMAS 6 horas para obtener UTC.
-  // Ejemplo: Hoy es Lunes, 21 de Julio de 2025, 4:05 PM CST (hora actual)
-  // 4:05 PM CST = 22:05 UTC
-  const FECHA_INICIO_HABLAR = new Date('2025-05-04T23:30:00Z').getTime(); // 4 de Mayo, 6:30 PM CST
-  const FECHA_INICIO_LLAMADA = new Date('2025-06-07T04:18:00Z').getTime(); // 6 de Junio, 10:18 PM CST
-  const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T22:27:00Z').getTime(); // 10 de Junio, 4:27 PM CST
-
-  // === FUNCIÓN PARA CALCULAR Y FORMATEAR TIEMPO CRONÓMETRO ===
-  // Recibe la fecha de inicio y el momento actual (currentTime)
-  const formatCronometro = (fechaInicio, momentoActual) => {
-    const diferencia = momentoActual - fechaInicio;
-
-    if (diferencia < 0) {
-      return (
-        <>
-          <span>00</span><span className="unit">D</span>
-          <span>00</span><span className="unit">H</span>
-          <span>00</span><span className="unit">M</span>
-          <span>00</span><span className="unit">S</span>
-        </>
-      );
-    }
-
-    const segundosTotales = Math.floor(diferencia / 1000);
-    const minutosTotales = Math.floor(segundosTotales / 60);
-    const horasTotales = Math.floor(minutosTotales / 60);
-    const diasTotales = Math.floor(horasTotales / 24);
-
-    const formatNum = (num) => (num < 10 ? '0' + num : num);
-
-    return (
-      <>
-        <span>{formatNum(diasTotales)}</span><span className="unit">D</span>
-        <span>{formatNum(horasTotales % 24)}</span><span className="unit">H</span>
-        <span>{formatNum(minutosTotales % 60)}</span><span className="unit">M</span>
-        <span>{formatNum(segundosTotales % 60)}</span><span className="unit">S</span>
-      </>
-    );
+  const goToNext = () => {
+    const nextIndex = activeIndex === galleryItems.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
   };
 
-  // === useEffect para actualizar el estado 'currentTime' cada segundo ===
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(Date.now()); // Actualiza el estado currentTime cada segundo
-    }, 1000); // Cada 1000 milisegundos (1 segundo)
+  const goToPrev = () => {
+    const prevIndex = activeIndex === 0 ? galleryItems.length - 1 : activeIndex - 1;
+    setActiveIndex(prevIndex);
+  };
 
-    // Limpieza: detiene el intervalo cuando el componente se desmonta
-    return () => clearInterval(intervalId);
-  }, []); // El array vacío [] asegura que este efecto se ejecuta solo una vez al inicio
+  const currentItem = galleryItems[activeIndex];
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Logo principal */}
-        <img
-          src={keybladeLogo}
-          className="App-logo"
-          alt="Logo Keyblade"
-          style={{ height: '150px', marginBottom: '20px' }}
-        />
-
-        <h1>¡Un Mensaje Secreto Para Ti!</h1> {/* <--- TÍTULO DE CONFESIÓN */}
-        <p>
-          He creado este pequeño espacio para compartir algunas cosas que he sentido y pensado.<br/>
-          Espero que lo explores con calma y corazón abierto.
-        </p>
-
-        {/* ========================================================= */}
-        {/* ¡GALERÍA 1: "Cosas que aprendí y me gustan de ti"! */}
-        {/* ========================================================= */}
-        <h2 className="gallery-section-title">Cosas que aprendí y me gustan de ti</h2>
-        <Gallery galleryItems={galeriaContenido_Aprendi} musicList={listaMusica_Aprendi} />
-
-        {/* ========================================================= */}
-        {/* ¡GALERÍA 2: "Detalles de mí que me gustaría que sepas"! */}
-        {/* ========================================================= */}
-        <h2 className="gallery-section-title">Detalles de mí que me gustaría que sepas</h2>
-        <Gallery galleryItems={galeriaContenido_Detalles} musicList={listaMusica_Detalles} />
-
-        {/* ========================================================= */}
-        {/* ¡GALERÍA 3: "Lo que siento por ti"! */}
-        {/* ========================================================= */}
-        <h2 className="gallery-section-title">Lo que siento por ti</h2> {/* <--- ¡CORREGIDO! Antes decía "lo que siento por ti" sin mayúscula */}
-        <Gallery galleryItems={galeriaContenido_Sentimientos} musicList={listaMusica_Sentimientos} />
-
-        {/* ========================================================= */}
-        {/* ¡CONTADORES CRONÓMETRO CON ESTILO DIGITAL! */}
-        {/* ========================================================= */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="counters-container"
-        >
-          <h2 className="counter-main-title">Momentos que Atesoro</h2> {/* Título para el bloque de contadores */}
-          {/* Contador para "Desde que empezamos a hablar" */}
-          <div className="counter-item">
-            <p className="counter-title">Desde que empezamos a hablar:</p>
-            <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_HABLAR, currentTime)}
-            </div>
-          </div>
-
-          {/* Contador para "Desde nuestra primera llamada" */}
-          <div className="counter-item">
-            <p className="counter-title">Desde nuestra primera llamada:</p>
-            <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_LLAMADA, currentTime)}
-            </div>
-          </div>
-
-          {/* Contador para "Desde OtakuFest" */}
-          <div className="counter-item">
-            <p className="counter-title">Desde OtakuFest:</p>
-            <div className="digital-cronometer-display">
-              {formatCronometro(FECHA_INICIO_OTAKUFEST, currentTime)}
-            </div>
-          </div>
-        </motion.div>
-        {/* --- FIN CONTADORES --- */}
-
-        <p style={{ marginTop: '30px', fontSize: '0.9rem' }}>
-          Desarrollado con ❤️ por Jorge
-        </p>
-
-      </header>
+    <div className="gallery-container">
+      <button onClick={goToPrev} className="nav-arrow left-arrow">&#10094;</button>
+      <div className="slide">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentItem.idFoto}
+            src={currentItem.imagen}
+            alt={currentItem.titulo}
+            className="slide-image"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          />
+        </AnimatePresence>
+        <div className="slide-description">
+          <h3 className="slide-title">{currentItem.titulo}</h3>
+          <p>{currentItem.descripcion}</p>
+        </div>
+      </div>
+      <button onClick={goToNext} className="nav-arrow right-arrow">&#10095;</button>
     </div>
+  );
+};
+
+
+// =========================================================
+// === COMPONENTE APP (Componente Principal) ===
+// =========================================================
+function App() {
+  const [currentTime, setCurrentTime] = useState(Date.now());
+  const FECHA_INICIO_HABLAR = new Date('2025-05-04T23:30:00Z').getTime();
+  const FECHA_INICIO_LLAMADA = new Date('2025-06-07T04:18:00Z').getTime();
+  const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T22:27:00Z').getTime();
+
+  const formatCronometro = (fechaInicio, momentoActual) => {
+    const diferencia = momentoActual - fechaInicio;
+    if (diferencia < 0) {
+      return <><span>00</span><span className="unit">D</span><span>00</span><span className="unit">H</span><span>00</span><span className="unit">M</span><span>00</span><span className="unit">S</span></>;
+    }
+    const s = Math.floor(diferencia / 1000);
+    const m = Math.floor(s / 60);
+    const h = Math.floor(m / 60);
+    const d = Math.floor(h / 24);
+    const format = (n) => (n < 10 ? '0' + n : n);
+    return <><span>{format(d)}</span><span className="unit">D</span><span>{format(h % 24)}</span><span className="unit">H</span><span>{format(m % 60)}</span><span className="unit">M</span><span>{format(s % 60)}</span><span className="unit">S</span></>;
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => setCurrentTime(Date.now()), 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <>
+      {/* INYECTAMOS TODOS LOS ESTILOS CSS AQUÍ */}
+      <style>{`
+        /* --- ESTILOS GENERALES --- */
+        body {
+          margin: 0;
+          font-family: 'Georgia', serif;
+          background-color: #121212;
+          color: #e0e0e0;
+        }
+        .App {
+          text-align: center;
+          padding: 20px;
+        }
+        .App-header {
+          background-color: #202020;
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 40px;
+          border-radius: 12px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+          border: 1px solid #404040;
+        }
+        .App-header h1 {
+          color: #c9a4de;
+          font-family: 'Times New Roman', serif;
+          letter-spacing: 0.12em;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+        }
+        .App-header p {
+          color: #b0b0b0;
+          line-height: 1.8;
+          max-width: 700px;
+          margin: 15px auto;
+        }
+        .App-logo {
+          height: 150px;
+          margin-bottom: 20px;
+          filter: drop-shadow(0 0 8px rgba(160, 128, 192, 0.6));
+        }
+        .gallery-section-title {
+            margin-top: 60px;
+            color: #c9a4de;
+        }
+        /* --- ESTILOS DE LA GALERÍA CORREGIDOS --- */
+        .gallery-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          width: 90%;
+          max-width: 700px;
+          margin: 30px auto;
+        }
+        .slide {
+          position: relative;
+          width: 100%;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .slide-image {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+        .slide-description {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          box-sizing: border-box;
+          background: rgba(10, 10, 10, 0.85);
+          backdrop-filter: blur(5px);
+          color: #f0f0f0;
+          max-height: 60%; 
+          overflow-y: auto; 
+        }
+        .slide-title {
+          margin: 0 0 10px 0;
+          font-size: 1.4rem;
+          color: #d8bfd8;
+        }
+        .slide-description p {
+          margin: 0;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+        .nav-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          font-size: 2rem;
+          cursor: pointer;
+          z-index: 10;
+          transition: background-color 0.3s ease;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .nav-arrow:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+        .left-arrow { left: -25px; }
+        .right-arrow { right: -25px; }
+
+        /* --- ESTILOS DE LOS CRONÓMETROS --- */
+        .counters-container {
+          padding: 30px;
+          margin: 60px auto;
+          background-color: #262626;
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+          border: 1px solid #404040;
+        }
+        .counter-item {
+          margin-bottom: 25px;
+          padding-bottom: 25px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .counter-item:last-child {
+          margin-bottom: 0;
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+        .counter-main-title, .counter-title {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            color: #c9a4de;
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .digital-cronometer-display {
+          font-family: 'Courier New', monospace;
+          font-size: 2.3rem;
+          color: #98fb98;
+          background-color: #1a1a1a;
+          padding: 12px 18px;
+          border-radius: 10px;
+          letter-spacing: 5px;
+          text-shadow: 0 0 12px rgba(152, 251, 152, 0.8);
+          display: flex;
+          justify-content: center;
+          gap: 18px;
+          border: 1px solid #72cc72;
+          margin-top: 15px;
+        }
+        .digital-cronometer-display .unit {
+          font-size: 0.85rem;
+          color: #b0d9b0;
+          margin-left: -10px;
+          align-self: flex-end;
+        }
+      `}</style>
+
+      <div className="App">
+        <header className="App-header">
+          <img src={keybladeLogo} className="App-logo" alt="Logo Keyblade" />
+          <h1>¡Un Mensaje Secreto Para Ti!</h1>
+          <p>
+            He creado este pequeño espacio para compartir algunas cosas que he sentido y pensado.<br />
+            Espero que lo explores con calma y corazón abierto.
+          </p>
+
+          <h2 className="gallery-section-title">Cosas que aprendí y me gustan de ti</h2>
+          <Gallery galleryItems={galeriaContenido_Aprendi} />
+
+          <h2 className="gallery-section-title">Detalles de mí que me gustaría que sepas</h2>
+          <Gallery galleryItems={galeriaContenido_Detalles} />
+
+          <h2 className="gallery-section-title">Lo que siento por ti</h2>
+          <Gallery galleryItems={galeriaContenido_Sentimientos} />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="counters-container"
+          >
+            <h2 className="counter-main-title">Momentos que Atesoro</h2>
+            <div className="counter-item">
+              <p className="counter-title">Desde que empezamos a hablar:</p>
+              <div className="digital-cronometer-display">
+                {formatCronometro(FECHA_INICIO_HABLAR, currentTime)}
+              </div>
+            </div>
+            <div className="counter-item">
+              <p className="counter-title">Desde nuestra primera llamada:</p>
+              <div className="digital-cronometer-display">
+                {formatCronometro(FECHA_INICIO_LLAMADA, currentTime)}
+              </div>
+            </div>
+            <div className="counter-item">
+              <p className="counter-title">Desde OtakuFest:</p>
+              <div className="digital-cronometer-display">
+                {formatCronometro(FECHA_INICIO_OTAKUFEST, currentTime)}
+              </div>
+            </div>
+          </motion.div>
+
+          <p style={{ marginTop: '30px', fontSize: '0.9rem' }}>
+            Desarrollado con ❤️ por Jorge
+          </p>
+        </header>
+      </div>
+    </>
   );
 }
 
