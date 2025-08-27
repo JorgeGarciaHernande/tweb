@@ -33,7 +33,7 @@ const galeriaContenido_Aprendi = [
 const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
-    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
+    imagen: 'https://i.imgur.com/9CyJPdX.jpeg',
     titulo: 'Detalle 1',
     descripcion: 'Aquí va la descripción de la imagen.',
   },
