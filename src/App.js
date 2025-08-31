@@ -7,7 +7,7 @@ import corazonNeonLogo from './corazon-neon.png'; // Correctamente importado
 import React, { useState, useEffect } from 'react';
 
 // =========================================================
-// ¡TUS DATOS DE LAS GALERÍAS! (Sin cambios)
+// ¡TUS DATOS DE LAS GALERÍAS!
 // =========================================================
 const galeriaContenido_Aprendi = [
   {
@@ -24,7 +24,7 @@ const galeriaContenido_Aprendi = [
   },
   {
     idFoto: 'autenticidad',
-    imagen: 'https://i.imgur.com/xIe4t56.jpeg', // Imagen actualizada para que funcione
+    imagen: 'https://i.imgur.com/xIe4t56.jpeg',
     titulo: 'Tu autenticidad',
     descripcion: 'Me encanta tu forma de ser, sin filtros y siempre genuina.',
   },
@@ -34,46 +34,45 @@ const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
     imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
-
-    titulo: 'Detalle 1',
-    descripcion: 'Aquí va la descripción de la imagen.',
+    titulo: 'Nuestras Noches de Anime',
+    descripcion: 'Me gusta mucho compartir estos momentos contigo, viendo animes que nos enganchan. A veces siento que nuestra historia podría ser una de esas, una que me encantaría ver hasta el final.',
   },
   {
     idFoto: 'otaku-hobby',
-    imagen: 'https://i.imgur.com/otL6D4B.jpeg', // Imagen actualizada para que funcione
-    titulo: 'Detalle 2',
-    descripcion: 'Aquí va la descripción de la imagen.',
+    imagen: 'https://i.imgur.com/otL6D4B.jpeg',
+    titulo: 'Compartir lo que Amamos',
+    descripcion: 'Me fascina cuando me enseñas tus figuras o me hablas de los mangas que estás leyendo. Ver la pasión en tus ojos cuando hablas de lo que te gusta es una de las cosas que más me atraen de ti.',
   },
   {
     idFoto: 'cafe-noche',
-    imagen: 'https://i.imgur.com/yO8m2g4.jpeg', // Imagen actualizada para que funcione
-    titulo: 'Detalle 3',
-    descripcion: 'Aquí va la descripción de la imagen.',
+    imagen: 'https://i.imgur.com/yO8m2g4.jpeg',
+    titulo: 'Nuestras Pláticas Nocturnas',
+    descripcion: 'Pienso en las conversaciones que hemos tenido hasta tarde. No importa de qué hablemos, el tiempo se pasa volando. Es en esos momentos tranquilos donde siento que más conectamos, y me encanta.',
   },
 ];
 
 const galeriaContenido_Sentimientos = [
   {
     idFoto: 'corazon-flor',
-    imagen: 'https://i.imgur.com/mJgLQ1N.jpeg', // Imagen actualizada para que funcione
+    imagen: 'https://i.imgur.com/mJgLQ1N.jpeg',
     titulo: 'Lo que siento...',
     descripcion: 'Cuando hablo contigo siento que el corazon me late por mil cuando estamos hablando viendo anime o jugando no disfruto los silencios por que me encanta escuchar tu voz o tu risa',
   },
   {
     idFoto: 'futuro-compartido',
-    imagen: 'https://i.imgur.com/5u8a2gN.jpeg', // Imagen actualizada para que funcione
+    imagen: 'https://i.imgur.com/5u8a2gN.jpeg',
     titulo: 'Ese día...',
     descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
   {
     idFoto: 'confesion-directa',
-    imagen: 'https://i.imgur.com/aW8sO0p.jpeg', // Imagen actualizada para que funcione
+    imagen: 'https://i.imgur.com/aW8sO0p.jpeg',
     titulo: 'Me encantas',
     descripcion: 'Me encanta mucho de ti tus bromas algo tontita como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
   },
   {
-    idFoto: 'confesion-final', // ID cambiado para evitar duplicados
-    imagen: 'https://i.imgur.com/9CyJPdX.jpeg', // Imagen actualizada para que funcione
+    idFoto: 'confesion-final',
+    imagen: 'https://i.imgur.com/9CyJPdX.jpeg',
     titulo: 'En resumen...',
     descripcion: 'Solo queria decirte que ME GUSTAS TAL CUAL ERES con los virtudes y defectos que hasta el momento he conocido',
   },
@@ -161,40 +160,34 @@ function App() {
   /* --- ESTILOS GENERALES --- */
   body {
     margin: 0;
-    /* Usamos una fuente más moderna y legible para el texto general */
     font-family: 'Poppins', sans-serif;
-    /* Un fondo oscuro con un gradiente sutil para darle profundidad */
     background: radial-gradient(ellipse at center, #2e2c34, #121212);
     color: #e0e0e0;
-    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+    overflow-x: hidden;
   }
   .App {
     text-align: center;
     padding: 20px;
   }
   .App-header {
-    /* Un fondo semi-transparente para un efecto "glassmorphism" */
     background-color: rgba(24, 22, 28, 0.75);
     backdrop-filter: blur(10px);
     max-width: 1000px;
     margin: 0 auto;
     padding: 40px;
-    border-radius: 16px; /* Bordes más redondeados */
-    /* Una sombra más suave y difuminada */
+    border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
   .App-header h1 {
-    color: #d8b6ff; /* Un lila más vibrante */
-    /* Una fuente elegante y clásica para el título principal */
+    color: #d8b6ff;
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     letter-spacing: 0.1em;
-    /* Efecto de brillo suave para el texto */
     text-shadow: 0 0 12px rgba(216, 182, 255, 0.6);
   }
   .App-header p {
-    color: #c0c0c0; /* Un gris un poco más claro */
+    color: #c0c0c0;
     line-height: 1.8;
     max-width: 700px;
     margin: 15px auto;
@@ -213,7 +206,7 @@ function App() {
     font-size: 1.8rem;
     text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
   }
-  /* --- ESTILOS DE LA GALERÍA (Sin grandes cambios) --- */
+  /* --- ESTILOS DE LA GALERÍA --- */
   .gallery-container {
     display: flex;
     align-items: center;
@@ -266,13 +259,13 @@ function App() {
   .left-arrow { left: -25px; }
   .right-arrow { right: -25px; }
 
-  /* --- ✨ ESTILOS MEJORADOS DE LOS CRONÓMETROS ✨ --- */
+  /* --- ESTILOS MEJORADOS DE LOS CRONÓMETROS --- */
   .counters-container {
     padding: 30px;
     margin: 60px auto;
-    background-color: transparent; /* Quitamos el fondo sólido */
-    box-shadow: none; /* Quitamos la sombra */
-    border: none; /* Quitamos el borde */
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
   }
   .counter-item {
     margin-bottom: 35px;
@@ -297,37 +290,34 @@ function App() {
   }
 
   .digital-cronometer-display {
-    font-family: 'Poppins', monospace; /* Fuente más suave */
+    font-family: 'Poppins', monospace;
     font-size: 2.5rem;
     font-weight: 400;
-    /* Cambiamos el verde por el mismo lila de los títulos para unificar */
     color: #e6dcf0;
-    background-color: transparent; /* Sin fondo */
+    background-color: transparent;
     padding: 12px 18px;
     border-radius: 10px;
     letter-spacing: 5px;
-    /* ✨ Efecto de brillo suave para los números */
     text-shadow: 0 0 5px #c9a4de, 0 0 10px #c9a4de;
     display: flex;
     justify-content: center;
-    align-items: baseline; /* Alinea mejor los números y las letras */
+    align-items: baseline;
     gap: 18px;
-    border: 1px solid rgba(216, 182, 255, 0.3); /* Borde suave y del mismo color */
+    border: 1px solid rgba(216, 182, 255, 0.3);
     margin-top: 15px;
     transition: all 0.3s ease;
   }
   
-  .digital-cronometer-display:hover {SSS
-    /* Pequeño efecto al pasar el mouse */
+  .digital-cronometer-display:hover {
     border-color: rgba(217, 182, 255, 0.7);
     box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
   }
   
   .digital-cronometer-display .unit {
     font-size: 0.8rem;
-    color: #c9a4de; /* Unidades con el color principal */
+    color: #c9a4de;
     margin-left: -12px;
-    opacity: 0.8; /* Ligeramente transparentes */
+    opacity: 0.8;
     font-weight: 300;
   }
 `}</style>
