@@ -3,7 +3,7 @@
 // =======================================================
 
 import { motion, AnimatePresence } from 'framer-motion';
-import keybladeLogo from './keyblade.png';
+import corazonNeonLogo from './corazon-neon.png'; // Correctamente importado
 import React, { useState, useEffect } from 'react';
 
 // =========================================================
@@ -11,8 +11,8 @@ import React, { useState, useEffect } from 'react';
 // =========================================================
 const galeriaContenido_Aprendi = [
   {
-    idFoto: 'dante-gif',
-    imagen: 'https://i.imgur.com/9AqmSIY.gif',
+    idFoto: 'xiaopic',
+    imagen: 'https://i.imgur.com/O9ZlWS1.jpeg',
     titulo: 'Tu gusto obsesivo por las cosas',
     descripcion: 'Me encanta como cuando te gusta algo te obsesionas con eso al 100% por ejemplo cuando jugamos genshin conocias todas las ubicaciones de los cofres todos los puzzles que personajes tenian buena sinergia,la primera vez que hablamos como dominabas bastante bien de DMC simplemente me encanto',
   },
@@ -33,7 +33,8 @@ const galeriaContenido_Aprendi = [
 const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
-    imagen: 'https://i.imgur.com/9CyJPdX.jpeg',
+    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
+
     titulo: 'Detalle 1',
     descripcion: 'Aquí va la descripción de la imagen.',
   },
@@ -153,170 +154,186 @@ function App() {
   return (
     <>
       {/* INYECTAMOS TODOS LOS ESTILOS CSS AQUÍ */}
-      <style>{`
-        /* --- ESTILOS GENERALES --- */
-        body {
-          margin: 0;
-          font-family: 'Georgia', serif;
-          background-color: #121212;
-          color: #e0e0e0;
-        }
-        .App {
-          text-align: center;
-          padding: 20px;
-        }
-        .App-header {
-          background-color: #202020;
-          max-width: 1000px;
-          margin: 0 auto;
-          padding: 40px;
-          border-radius: 12px;
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-          border: 1px solid #404040;
-        }
-        .App-header h1 {
-          color: #c9a4de;
-          font-family: 'Times New Roman', serif;
-          letter-spacing: 0.12em;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-        }
-        .App-header p {
-          color: #b0b0b0;
-          line-height: 1.8;
-          max-width: 700px;
-          margin: 15px auto;
-        }
-        .App-logo {
-          height: 150px;
-          margin-bottom: 20px;
-          filter: drop-shadow(0 0 8px rgba(160, 128, 192, 0.6));
-        }
-        .gallery-section-title {
-            margin-top: 60px;
-            color: #c9a4de;
-        }
-        /* --- ESTILOS DE LA GALERÍA CORREGIDOS --- */
-        .gallery-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          width: 90%;
-          max-width: 700px;
-          margin: 30px auto;
-        }
-        .slide {
-          position: relative;
-          width: 100%;
-          border-radius: 15px;
-          overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        .slide-image {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
-        .slide-description {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 20px;
-          box-sizing: border-box;
-          background: rgba(10, 10, 10, 0.85);
-          backdrop-filter: blur(5px);
-          color: #f0f0f0;
-          max-height: 60%; 
-          overflow-y: auto; 
-        }
-        .slide-title {
-          margin: 0 0 10px 0;
-          font-size: 1.4rem;
-          color: #d8bfd8;
-        }
-        .slide-description p {
-          margin: 0;
-          font-size: 1rem;
-          line-height: 1.6;
-        }
-        .nav-arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background-color: rgba(0, 0, 0, 0.5);
-          color: white;
-          border: none;
-          font-size: 2rem;
-          cursor: pointer;
-          z-index: 10;
-          transition: background-color 0.3s ease;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .nav-arrow:hover {
-          background-color: rgba(0, 0, 0, 0.8);
-        }
-        .left-arrow { left: -25px; }
-        .right-arrow { right: -25px; }
+     <style>{`
+  /* --- IMPORTAMOS FUENTES DE GOOGLE --- */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400&display=swap');
 
-        /* --- ESTILOS DE LOS CRONÓMETROS --- */
-        .counters-container {
-          padding: 30px;
-          margin: 60px auto;
-          background-color: #262626;
-          box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-          border: 1px solid #404040;
-        }
-        .counter-item {
-          margin-bottom: 25px;
-          padding-bottom: 25px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        .counter-item:last-child {
-          margin-bottom: 0;
-          border-bottom: none;
-          padding-bottom: 0;
-        }
-        .counter-main-title, .counter-title {
-            font-family: 'Times New Roman', serif;
-            font-size: 1.2rem;
-            color: #c9a4de;
-            margin-bottom: 8px;
-            letter-spacing: 1.5px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-        }
-        .digital-cronometer-display {
-          font-family: 'Courier New', monospace;
-          font-size: 2.3rem;
-          color: #98fb98;
-          background-color: #1a1a1a;
-          padding: 12px 18px;
-          border-radius: 10px;
-          letter-spacing: 5px;
-          text-shadow: 0 0 12px rgba(152, 251, 152, 0.8);
-          display: flex;
-          justify-content: center;
-          gap: 18px;
-          border: 1px solid #72cc72;
-          margin-top: 15px;
-        }
-        .digital-cronometer-display .unit {
-          font-size: 0.85rem;
-          color: #b0d9b0;
-          margin-left: -10px;
-          align-self: flex-end;
-        }
-      `}</style>
+  /* --- ESTILOS GENERALES --- */
+  body {
+    margin: 0;
+    /* Usamos una fuente más moderna y legible para el texto general */
+    font-family: 'Poppins', sans-serif;
+    /* Un fondo oscuro con un gradiente sutil para darle profundidad */
+    background: radial-gradient(ellipse at center, #2e2c34, #121212);
+    color: #e0e0e0;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  }
+  .App {
+    text-align: center;
+    padding: 20px;
+  }
+  .App-header {
+    /* Un fondo semi-transparente para un efecto "glassmorphism" */
+    background-color: rgba(24, 22, 28, 0.75);
+    backdrop-filter: blur(10px);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 16px; /* Bordes más redondeados */
+    /* Una sombra más suave y difuminada */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .App-header h1 {
+    color: #d8b6ff; /* Un lila más vibrante */
+    /* Una fuente elegante y clásica para el título principal */
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+    /* Efecto de brillo suave para el texto */
+    text-shadow: 0 0 12px rgba(216, 182, 255, 0.6);
+  }
+  .App-header p {
+    color: #c0c0c0; /* Un gris un poco más claro */
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 15px auto;
+  }
+  .App-logo {
+    height: 150px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(216, 182, 255, 0.5));
+  }
+  .gallery-section-title {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: #d8b6ff;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
+  }
+  /* --- ESTILOS DE LA GALERÍA (Sin grandes cambios) --- */
+  .gallery-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+  }
+  .slide {
+    position: relative;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  .slide-image { width: 100%; height: auto; display: block; }
+  .slide-description {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(5px);
+    color: #f0f0f0;
+    max-height: 60%; 
+    overflow-y: auto; 
+  }
+  .slide-title {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    color: #d8bfd8;
+    font-family: 'Playfair Display', serif;
+  }
+  .slide-description p { margin: 0; font-size: 1rem; line-height: 1.6; }
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white; border: none;
+    font-size: 2rem; cursor: pointer; z-index: 10;
+    transition: all 0.3s ease;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-arrow:hover { background-color: rgba(216, 182, 255, 0.3); }
+  .left-arrow { left: -25px; }
+  .right-arrow { right: -25px; }
 
+  /* --- ✨ ESTILOS MEJORADOS DE LOS CRONÓMETROS ✨ --- */
+  .counters-container {
+    padding: 30px;
+    margin: 60px auto;
+    background-color: transparent; /* Quitamos el fondo sólido */
+    box-shadow: none; /* Quitamos la sombra */
+    border: none; /* Quitamos el borde */
+  }
+  .counter-item {
+    margin-bottom: 35px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgba(216, 182, 255, 0.2);
+  }
+  .counter-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+  
+  .counter-main-title, .counter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #d8b6ff;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
+  }
+  .counter-title {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+  }
+
+  .digital-cronometer-display {
+    font-family: 'Poppins', monospace; /* Fuente más suave */
+    font-size: 2.5rem;
+    font-weight: 400;
+    /* Cambiamos el verde por el mismo lila de los títulos para unificar */
+    color: #e6dcf0;
+    background-color: transparent; /* Sin fondo */
+    padding: 12px 18px;
+    border-radius: 10px;
+    letter-spacing: 5px;
+    /* ✨ Efecto de brillo suave para los números */
+    text-shadow: 0 0 5px #c9a4de, 0 0 10px #c9a4de;
+    display: flex;
+    justify-content: center;
+    align-items: baseline; /* Alinea mejor los números y las letras */
+    gap: 18px;
+    border: 1px solid rgba(216, 182, 255, 0.3); /* Borde suave y del mismo color */
+    margin-top: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .digital-cronometer-display:hover {
+    /* Pequeño efecto al pasar el mouse */
+    border-color: rgba(216, 182, 255, 0.7);
+    box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
+  }
+  
+  .digital-cronometer-display .unit {
+    font-size: 0.8rem;
+    color: #c9a4de; /* Unidades con el color principal */
+    margin-left: -12px;
+    opacity: 0.8; /* Ligeramente transparentes */
+    font-weight: 300;
+  }
+`}</style>
       <div className="App">
         <header className="App-header">
-          <img src={keybladeLogo} className="App-logo" alt="Logo Keyblade" />
+        <img src={corazonNeonLogo} className="App-logo" alt="Logo de Corazón Neón" />
           <h1>¡Un Mensaje Secreto Para Ti!</h1>
           <p>
             He creado este pequeño espacio para compartir algunas cosas que he sentido y pensado.<br />
