@@ -317,9 +317,9 @@ function App() {
     transition: all 0.3s ease;
   }
   
-  .digital-cronometer-display:hover {
+  .digital-cronometer-display:hover {SSS
     /* Pequeño efecto al pasar el mouse */
-    border-color: rgba(216, 182, 255, 0.7);
+    border-color: rgba(217, 182, 255, 0.7);
     box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
   }
   
