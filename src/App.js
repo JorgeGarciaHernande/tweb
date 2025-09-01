@@ -3,11 +3,7 @@
 // =======================================================
 
 import { motion, AnimatePresence } from 'framer-motion';
-import corazonNeonLogo from './corazon-neon.png'; // Correctamente importado
-import React, { useState, useEffect } from 'react';
-import imagenCollage from './ac.png'; 
-import imagenAutenticidad from './tn.jpeg';
-import imagenSesion from './sesion.jpeg'; // ✨ 1. IMPORTAMOS LA NUEVA IMAGEN
+import React, { useState, useEffect, useRef } from 'react';
 
 // =========================================================
 // ¡TUS DATOS DE LAS GALERÍAS!
