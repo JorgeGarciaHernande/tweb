@@ -5,6 +5,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import corazonNeonLogo from './corazon-neon.png'; // Correctamente importado
 import React, { useState, useEffect } from 'react';
+import imagenCollage from './ac.png'; 
+import imagenAutenticidad from './tn.jpeg';
+import imagenSesion from './sesion.jpeg'; // ✨ 1. IMPORTAMOS LA NUEVA IMAGEN
 
 // =========================================================
 // ¡TUS DATOS DE LAS GALERÍAS!
@@ -18,24 +21,24 @@ const galeriaContenido_Aprendi = [
   },
   {
     idFoto: 'collage',
-    imagen: 'https://i.imgur.com/wfdz7xY.jpeg',
+    imagen: imagenCollage, 
     titulo: 'Tofu multifacética',
     descripcion: 'Me encanta como te vistes todos tus estilos desde muy girly hasta algo gotico me encantanta tambien como te maquillas como te arreglas las pestañas como todo te luce bien descubri que estudiaste diseño de modas y me fascino ',
   },
   {
     idFoto: 'autenticidad',
-    imagen: 'https://i.imgur.com/xIe4t56.jpeg',
-    titulo: 'Tu autenticidad',
-    descripcion: 'Me encanta tu forma de ser, sin filtros y siempre genuina.',
+    imagen: imagenAutenticidad,
+    titulo: 'MaryJoe detras de tofu',
+    descripcion: 'Descubri a la chica sensible la que carga con sus traumas la que disfruta de cosas sencillas la que se burla cuando alguien le pasa algo per despues de eso te acercas ayudar o como olvidar a los 15 gatitos que alimentas',
   },
 ];
 
 const galeriaContenido_Detalles = [
   {
     idFoto: 'kiminidotoke-ending',
-    imagen: 'https://i.imgur.com/FcRj5Sn.jpeg',
+    imagen: 'https://external-preview.redd.it/lets-get-ouran-high-school-host-club-back-on-track-v0-jbacr0KWkCsgp1N1HC1TZEc5VSTv9OZibdhK9xA5KEU.jpg?width=1080&crop=smart&auto=webp&s=35680b0200ac279fd666a9c26f341301ee6483d4',
     titulo: 'Nuestras Noches de Anime',
-    descripcion: 'Me gusta mucho compartir estos momentos contigo, viendo animes que nos enganchan. A veces siento que nuestra historia podría ser una de esas, una que me encantaría ver hasta el final.',
+    descripcion: 'Me encantan esas noches de ver anime cuando nos viciamos a ouran o bananafish se convirtieron en mi momento favorito del ida en algunas ocasiones me da mucha risa como yo comenzaba a aventarme mis peliculas mentales de las cosas que podian pasar y tu no podias evitar reir por que el anime me contestaba mi pregunta, tal vez ya no lo hacemos tan amenudo pero te garantizo que esas noches tienen un lugar importante en mi corazon',
   },
   {
     idFoto: 'otaku-hobby',
@@ -60,13 +63,13 @@ const galeriaContenido_Sentimientos = [
   },
   {
     idFoto: 'futuro-compartido',
-    imagen: 'https://i.imgur.com/5u8a2gN.jpeg',
+    imagen: imagenSesion, // ✨ 2. Y LA USAMOS AQUÍ
     titulo: 'Ese día...',
     descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
   {
     idFoto: 'confesion-directa',
-    imagen: 'https://i.imgur.com/aW8sO0p.jpeg',
+    imagen: 'https://i.pinimg.com/736x/74/ab/0e/74ab0e443899d085685150dc42a912ea.jpg',
     titulo: 'Me encantas',
     descripcion: 'Me encanta mucho de ti tus bromas algo tontita como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
   },
