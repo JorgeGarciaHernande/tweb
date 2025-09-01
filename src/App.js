@@ -3,11 +3,7 @@
 // =======================================================
 
 import { motion, AnimatePresence } from 'framer-motion';
-import corazonNeonLogo from './corazon-neon.png'; // Correctamente importado
-import React, { useState, useEffect } from 'react';
-import imagenCollage from './ac.png'; 
-import imagenAutenticidad from './tn.jpeg';
-import imagenSesion from './sesion.jpeg'; // ✨ 1. IMPORTAMOS LA NUEVA IMAGEN
+import React, { useState, useEffect, useRef } from 'react';
 
 // =========================================================
 // ¡TUS DATOS DE LAS GALERÍAS!
@@ -21,13 +17,13 @@ const galeriaContenido_Aprendi = [
   },
   {
     idFoto: 'collage',
-    imagen: imagenCollage, 
+    imagen: '/ac.png', // Ruta a la carpeta public
     titulo: 'Tofu multifacética',
     descripcion: 'Me encanta como te vistes todos tus estilos desde muy girly hasta algo gotico me encantanta tambien como te maquillas como te arreglas las pestañas como todo te luce bien descubri que estudiaste diseño de modas y me fascino ',
   },
   {
     idFoto: 'autenticidad',
-    imagen: imagenAutenticidad,
+    imagen: '/tn.jpeg', // Ruta a la carpeta public
     titulo: 'MaryJoe detras de tofu',
     descripcion: 'Descubri a la chica sensible la que carga con sus traumas la que disfruta de cosas sencillas la que se burla cuando alguien le pasa algo per despues de eso te acercas ayudar o como olvidar a los 15 gatitos que alimentas',
   },
@@ -63,7 +59,7 @@ const galeriaContenido_Sentimientos = [
   },
   {
     idFoto: 'futuro-compartido',
-    imagen: imagenSesion, // ✨ 2. Y LA USAMOS AQUÍ
+    imagen: '/sesion.jpeg', // Ruta a la carpeta public
     titulo: 'Ese día...',
     descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
@@ -135,6 +131,8 @@ function App() {
   const FECHA_INICIO_LLAMADA = new Date('2025-06-07T04:18:00Z').getTime();
   const FECHA_INICIO_OTAKUFEST = new Date('2025-06-10T22:27:00Z').getTime();
 
+  const audioRef = useRef(null);
+
   const formatCronometro = (fechaInicio, momentoActual) => {
     const diferencia = momentoActual - fechaInicio;
     if (diferencia < 0) {
@@ -150,11 +148,24 @@ function App() {
 
   useEffect(() => {
     const intervalId = setInterval(() => setCurrentTime(Date.now()), 1000);
+    
+    if (audioRef.current) {
+        audioRef.current.play().catch(error => {
+            console.log("La reproducción automática fue bloqueada por el navegador.");
+        });
+    }
+
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <>
+      <audio 
+        ref={audioRef} 
+        src="https://archive.org/download/from-the-start/from%20the%20start.mp3" 
+        loop 
+      />
+
       {/* INYECTAMOS TODOS LOS ESTILOS CSS AQUÍ */}
      <style>{`
   /* --- IMPORTAMOS FUENTES DE GOOGLE --- */
@@ -216,7 +227,7 @@ function App() {
     justify-content: center;
     position: relative;
     width: 90%;
-    max-width: 700px;
+    max-width: 701px;
     margin: 30px auto;
   }
   .slide {
@@ -326,7 +337,7 @@ function App() {
 `}</style>
       <div className="App">
         <header className="App-header">
-        <img src={corazonNeonLogo} className="App-logo" alt="Logo de Corazón Neón" />
+        <img src="/corazon-neon.png" className="App-logo" alt="Logo de Corazón Neón" />
           <h1>¡Un Mensaje Secreto Para Ti!</h1>
           <p>
             He creado este pequeño espacio para compartir algunas cosas que he sentido y pensado.<br />
