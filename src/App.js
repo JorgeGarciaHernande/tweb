@@ -17,13 +17,13 @@ const galeriaContenido_Aprendi = [
   },
   {
     idFoto: 'collage',
-    imagen: '/ac.png', // Ruta a la carpeta public
+    imagen: '/ac.png', // Correcto: apunta a la carpeta public
     titulo: 'Tofu multifacética',
     descripcion: 'Me encanta como te vistes todos tus estilos desde muy girly hasta algo gotico me encantanta tambien como te maquillas como te arreglas las pestañas como todo te luce bien descubri que estudiaste diseño de modas y me fascino ',
   },
   {
     idFoto: 'autenticidad',
-    imagen: '/tn.jpeg', // Ruta a la carpeta public
+    imagen: '/tn.jpeg', // Correcto: apunta a la carpeta public
     titulo: 'MaryJoe detras de tofu',
     descripcion: 'Descubri a la chica sensible la que carga con sus traumas la que disfruta de cosas sencillas la que se burla cuando alguien le pasa algo per despues de eso te acercas ayudar o como olvidar a los 15 gatitos que alimentas',
   },
@@ -59,7 +59,7 @@ const galeriaContenido_Sentimientos = [
   },
   {
     idFoto: 'futuro-compartido',
-    imagen: '/sesion.jpeg', // Ruta a la carpeta public
+    imagen: '/sesion.jpeg', // Correcto: apunta a la carpeta public
     titulo: 'Ese día...',
     descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
