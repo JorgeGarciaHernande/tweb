@@ -32,19 +32,19 @@ const galeriaContenido_Aprendi = [
 const galeriaContenido_Detalles = [
  {
     idFoto: 'otaku-hobby',
-    imagen: 'https://i.imgur.com/otL6D4B.jpeg',
+    imagen: 'https://i.imgur.com/8iyXZVN.png',
     titulo: 'Por que soy como soy ',
     descripcion: 'yo atribuyo como soy gracia a las cosas  que veia de niño almenos en parte cientifica que considero que hay en mi donde yo dije quuiero dedicarme a la ciencia fue cuando vi jimmy neutron sonara algo ridiculo pero de muy pequeño quise ser como el pedi sets de quimica y fisica de regalo y desde ese momento se me da bien la ciencia y pues toda mi vida hasta el momento de hoy considero que si he tenido el talento olimpiadas de conocimiento, torneos de ajedrez,concursos de robotica,HACKTHONS, la programacion llego a gracias a un gran profe que vio que se me daba bien todo lo logico pero esa ya es otra historia'
   }, 
   {
     idFoto: 'kiminidotoke-ending',
-    imagen: 'https://external-preview.redd.it/lets-get-ouran-high-school-host-club-back-on-track-v0-jbacr0KWkCsgp1N1HC1TZEc5VSTv9OZibdhK9xA5KEU.jpg?width=1080&crop=smart&auto=webp&s=35680b0200ac279fd666a9c26f341301ee6483d4',
+    imagen: 'https://i.imgur.com/g4Tfli1.png',
     titulo: 'Como me imagino en el futuro',
     descripcion: 'Quiero estudiar una maestria en ciencias de la computacion o ciencias de datos por que me encanta todo lo que se puede hacer o aprender con el big data una infinidad de datos para descubrir cosas o patrones datos frios como pueden ser los NPHARD me puedo clavar horas tratando de resolver o entender por que pasan esas cosas , me gustaria trabajar como investigador ya sea de manera publica publicando todo el conocimiento para el acceso de todos,o en una empresa donde me den libertad para buscar como hacer mas eficientemente las cosas',
   },
   {
     idFoto: 'cafe-noche',
-    imagen: 'https://i.imgur.com/yO8m2g4.jpeg',
+    imagen: 'https://i.imgur.com/af2CKAa.png',
     titulo: 'mi pequeño gustito',
     descripcion: 'Una de las cosas que mas me gusta es jugar juegos simples puedo pasar horas con musica o algun podcast jugando juegos de memoria muscular como lo puedo ser tetris o pacman call of duty zombies  siendo un rato para mi y  mis ideas',
   },
@@ -53,7 +53,7 @@ const galeriaContenido_Detalles = [
 const galeriaContenido_Sentimientos = [
   {
     idFoto: 'corazon-flor',
-    imagen: 'https://i.imgur.com/mJgLQ1N.jpeg',
+    imagen: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ25pYmpkbDg5NndkenJjamJkZmVxaHkyYWRhNG4yNzNvaHlmdGRnayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YLK81inwdXriHZa7d0/giphy.gif',
     titulo: 'Lo que siento...',
     descripcion: 'Cuando hablo contigo siento que el corazon me late por mil cuando estamos hablando viendo anime o jugando no disfruto los silencios por que me encanta escuchar tu voz o tu risa',
   },
