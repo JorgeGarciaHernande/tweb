@@ -31,19 +31,19 @@ const galeriaContenido_Aprendi = [
 
 const galeriaContenido_Detalles = [
  {
-    idFoto: 'otaku-hobby',
+    idFoto: 'mi razon de ser yo',
     imagen: 'https://i.imgur.com/8iyXZVN.png',
     titulo: 'Por que soy como soy ',
     descripcion: 'yo atribuyo como soy gracia a las cosas  que veia de niño almenos en parte cientifica que considero que hay en mi donde yo dije quuiero dedicarme a la ciencia fue cuando vi jimmy neutron sonara algo ridiculo pero de muy pequeño quise ser como el pedi sets de quimica y fisica de regalo y desde ese momento se me da bien la ciencia y pues toda mi vida hasta el momento de hoy considero que si he tenido el talento olimpiadas de conocimiento, torneos de ajedrez,concursos de robotica,HACKTHONS, la programacion llego a gracias a un gran profe que vio que se me daba bien todo lo logico pero esa ya es otra historia'
   }, 
   {
-    idFoto: 'kiminidotoke-ending',
+    idFoto: 'mi yo del futuro',
     imagen: 'https://i.imgur.com/g4Tfli1.png',
     titulo: 'Como me imagino en el futuro',
     descripcion: 'Quiero estudiar una maestria en ciencias de la computacion o ciencias de datos por que me encanta todo lo que se puede hacer o aprender con el big data una infinidad de datos para descubrir cosas o patrones datos frios como pueden ser los NPHARD me puedo clavar horas tratando de resolver o entender por que pasan esas cosas , me gustaria trabajar como investigador ya sea de manera publica publicando todo el conocimiento para el acceso de todos,o en una empresa donde me den libertad para buscar como hacer mas eficientemente las cosas',
   },
   {
-    idFoto: 'cafe-noche',
+    idFoto: 'mis hobbies',
     imagen: 'https://i.imgur.com/af2CKAa.png',
     titulo: 'mi pequeño gustito',
     descripcion: 'Una de las cosas que mas me gusta es jugar juegos simples puedo pasar horas con musica o algun podcast jugando juegos de memoria muscular como lo puedo ser tetris o pacman call of duty zombies  siendo un rato para mi y  mis ideas',
@@ -52,25 +52,25 @@ const galeriaContenido_Detalles = [
 
 const galeriaContenido_Sentimientos = [
   {
-    idFoto: 'corazon-flor',
+    idFoto: 'Edward & Winry',
     imagen: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ25pYmpkbDg5NndkenJjamJkZmVxaHkyYWRhNG4yNzNvaHlmdGRnayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YLK81inwdXriHZa7d0/giphy.gif',
     titulo: 'Lo que siento...',
     descripcion: 'Cuando hablo contigo siento que el corazon me late por mil cuando estamos hablando viendo anime o jugando no disfruto los silencios por que me encanta escuchar tu voz o tu risa',
   },
   {
-    idFoto: 'futuro-compartido',
-    imagen: '/sesion.jpeg', // Correcto: apunta a la carpeta public
+    idFoto: 'sesion',
+    imagen: '/sesion.jpg', // Correcto: apunta a la carpeta public
     titulo: 'Ese día...',
     descripcion: 'Cuando tuvimos la sesion no se si me notaste un poco tenso o tal vez hasta algo nervioso es que no podia creer lo bien que lucias y no podia parar de apreciar todos los detalles simplemente no podia evitarlo',
   },
   {
-    idFoto: 'confesion-directa',
+    idFoto: 'ash',
     imagen: 'https://i.pinimg.com/736x/74/ab/0e/74ab0e443899d085685150dc42a912ea.jpg',
     titulo: 'Me encantas',
     descripcion: 'Me encanta mucho de ti tus bromas algo tontita como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
   },
   {
-    idFoto: 'confesion-final',
+    idFoto: 'confesion',
     imagen: 'https://i.imgur.com/9CyJPdX.jpeg',
     titulo: 'En resumen...',
     descripcion: 'Solo queria decirte que ME GUSTAS TAL CUAL ERES con los virtudes y defectos que hasta el momento he conocido',
