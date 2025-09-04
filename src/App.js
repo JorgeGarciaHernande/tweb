@@ -35,7 +35,7 @@ const galeriaContenido_Detalles = [
     imagen: 'https://i.imgur.com/8iyXZVN.png',
     titulo: 'Por que soy como soy ',
     descripcion: 'yo atribuyo como soy gracia a las cosas  que veia de niño almenos en parte cientifica que considero que hay en mi donde yo dije quuiero dedicarme a la ciencia fue cuando vi jimmy neutron sonara algo ridiculo pero de muy pequeño quise ser como el pedi sets de quimica y fisica de regalo y desde ese momento se me da bien la ciencia y pues toda mi vida hasta el momento de hoy considero que si he tenido el talento olimpiadas de conocimiento, torneos de ajedrez,concursos de robotica,HACKTHONS, la programacion llego a gracias a un gran profe que vio que se me daba bien todo lo logico pero esa ya es otra historia'
-  }, 
+  },
   {
     idFoto: 'mi yo del futuro',
     imagen: 'https://i.imgur.com/g4Tfli1.png',
@@ -142,8 +142,11 @@ function App() {
     const m = Math.floor(s / 60);
     const h = Math.floor(m / 60);
     const d = Math.floor(h / 24);
+    // Cambiamos la función de formato para que no añada un cero a los días
     const format = (n) => (n < 10 ? '0' + n : n);
-    return <><span>{format(d)}</span><span className="unit">D</span><span>{format(h % 24)}</span><span className="unit">H</span><span>{format(m % 60)}</span><span className="unit">M</span><span>{format(s % 60)}</span><span className="unit">S</span></>;
+    const formatDays = (n) => n; // Los días se muestran tal cual
+
+    return <><span>{formatDays(d)}</span><span className="unit">D</span><span>{format(h % 24)}</span><span className="unit">H</span><span>{format(m % 60)}</span><span className="unit">M</span><span>{format(s % 60)}</span><span className="unit">S</span></>;
   };
 
   useEffect(() => {
@@ -168,172 +171,237 @@ function App() {
 
       {/* INYECTAMOS TODOS LOS ESTILOS CSS AQUÍ */}
      <style>{`
-  /* --- IMPORTAMOS FUENTES DE GOOGLE --- */
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400&display=swap');
+ /* --- IMPORTAMOS FUENTES DE GOOGLE --- */
+ @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400&display=swap');
 
-  /* --- ESTILOS GENERALES --- */
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(ellipse at center, #2e2c34, #121212);
-    color: #e0e0e0;
-    overflow-x: hidden;
-  }
-  .App {
-    text-align: center;
-    padding: 20px;
-  }
-  .App-header {
-    background-color: rgba(24, 22, 28, 0.75);
-    backdrop-filter: blur(10px);
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-  .App-header h1 {
-    color: #d8b6ff;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 12px rgba(216, 182, 255, 0.6);
-  }
-  .App-header p {
-    color: #c0c0c0;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 15px auto;
-  }
-  .App-logo {
-    height: 150px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(216, 182, 255, 0.5));
-  }
-  .gallery-section-title {
-    margin-top: 60px;
-    margin-bottom: 30px;
-    color: #d8b6ff;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-    text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
-  }
-  /* --- ESTILOS DE LA GALERÍA --- */
-  .gallery-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 90%;
-    max-width: 701px;
-    margin: 30px auto;
-  }
-  .slide {
-    position: relative;
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-  }
-  .slide-image { width: 100%; height: auto; display: block; }
-  .slide-description {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(5px);
-    color: #f0f0f0;
-    max-height: 60%; 
-    overflow-y: auto; 
-  }
-  .slide-title {
-    margin: 0 0 10px 0;
-    font-size: 1.4rem;
-    color: #d8bfd8;
-    font-family: 'Playfair Display', serif;
-  }
-  .slide-description p { margin: 0; font-size: 1rem; line-height: 1.6; }
-  .nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white; border: none;
-    font-size: 2rem; cursor: pointer; z-index: 10;
-    transition: all 0.3s ease;
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .nav-arrow:hover { background-color: rgba(216, 182, 255, 0.3); }
-  .left-arrow { left: -25px; }
-  .right-arrow { right: -25px; }
+ /* --- ESTILOS GENERALES (Mobile-First) --- */
+ body {
+   margin: 0;
+   font-family: 'Poppins', sans-serif;
+   background: radial-gradient(ellipse at center, #2e2c34, #121212);
+   color: #e0e0e0;
+   overflow-x: hidden;
+ }
+ .App {
+   text-align: center;
+   padding: 15px; 
+ }
+ .App-header {
+   background-color: rgba(24, 22, 28, 0.75);
+   backdrop-filter: blur(10px);
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 25px;
+   border-radius: 16px;
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+   border: 1px solid rgba(255, 255, 255, 0.18);
+ }
+ .App-header h1 {
+   color: #d8b6ff;
+   font-family: 'Playfair Display', serif;
+   font-size: 2rem;
+   letter-spacing: 0.1em;
+   text-shadow: 0 0 12px rgba(216, 182, 255, 0.6);
+ }
+ .App-header p {
+   color: #c0c0c0;
+   line-height: 1.7;
+   max-width: 700px;
+   margin: 15px auto;
+   font-size: 0.95rem;
+ }
+ .App-logo {
+   height: 120px;
+   margin-bottom: 20px;
+   filter: drop-shadow(0 0 10px rgba(216, 182, 255, 0.5));
+ }
+ .gallery-section-title {
+   margin-top: 50px;
+   margin-bottom: 25px;
+   color: #d8b6ff;
+   font-family: 'Playfair Display', serif;
+   font-weight: 700;
+   font-size: 1.5rem;
+   text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
+ }
 
-  /* --- ESTILOS MEJORADOS DE LOS CRONÓMETROS --- */
-  .counters-container {
-    padding: 30px;
-    margin: 60px auto;
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-  }
-  .counter-item {
-    margin-bottom: 35px;
-    padding-bottom: 35px;
-    border-bottom: 1px solid rgba(216, 182, 255, 0.2);
-  }
-  .counter-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-  
-  .counter-main-title, .counter-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: #d8b6ff;
-    margin-bottom: 15px;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
-  }
-  .counter-title {
-    font-size: 1.2rem;
-    color: #e0e0e0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-  }
+ /* --- ESTILOS DE LA GALERÍA --- */
+ .gallery-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   width: 100%; 
+   max-width: 701px;
+   margin: 30px auto;
+ }
+ .slide {
+   position: relative;
+   width: 100%;
+   border-radius: 15px;
+   overflow: hidden;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+   border: 2px solid rgba(255, 255, 255, 0.2);
+ }
+ .slide-image { width: 100%; height: auto; display: block; }
+ .slide-description {
+   position: absolute;
+   bottom: 0; left: 0; right: 0;
+   padding: 15px;
+   box-sizing: border-box;
+   background: rgba(10, 10, 10, 0.85);
+   backdrop-filter: blur(5px);
+   color: #f0f0f0;
+   max-height: 60%; 
+   overflow-y: auto; 
+ }
+ .slide-title {
+   margin: 0 0 8px 0;
+   font-size: 1.2rem;
+   color: #d8bfd8;
+   font-family: 'Playfair Display', serif;
+ }
+ .slide-description p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+ 
+ .nav-arrow {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white; border: none;
+   font-size: 1.5rem;
+   cursor: pointer; z-index: 10;
+   transition: all 0.3s ease;
+   width: 40px; height: 40px;
+   border-radius: 50%;
+   display: flex; align-items: center; justify-content: center;
+ }
+ .nav-arrow:hover { background-color: rgba(216, 182, 255, 0.3); }
+ .left-arrow { left: 5px; }
+ .right-arrow { right: 5px; }
 
-  .digital-cronometer-display {
-    font-family: 'Poppins', monospace;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #e6dcf0;
-    background-color: transparent;
-    padding: 12px 18px;
-    border-radius: 10px;
-    letter-spacing: 5px;
-    text-shadow: 0 0 5px #c9a4de, 0 0 10px #c9a4de;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 18px;
-    border: 1px solid rgba(216, 182, 255, 0.3);
-    margin-top: 15px;
-    transition: all 0.3s ease;
-  }
-  
-  .digital-cronometer-display:hover {
-    border-color: rgba(217, 182, 255, 0.7);
-    box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
-  }
-  
-  .digital-cronometer-display .unit {
-    font-size: 0.8rem;
-    color: #c9a4de;
-    margin-left: -12px;
-    opacity: 0.8;
-    font-weight: 300;
-  }
+ /* --- ESTILOS MEJORADOS DE LOS CRONÓMETROS --- */
+ .counters-container {
+   padding: 20px 0;
+   margin: 50px auto;
+   background-color: transparent;
+   box-shadow: none;
+   border: none;
+ }
+ .counter-item {
+   margin-bottom: 30px;
+   padding-bottom: 30px;
+   border-bottom: 1px solid rgba(216, 182, 255, 0.2);
+ }
+ .counter-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+ 
+ .counter-main-title, .counter-title {
+   font-family: 'Playfair Display', serif;
+   font-size: 1.3rem;
+   color: #d8b6ff;
+   margin-bottom: 15px;
+   letter-spacing: 1.5px;
+   text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
+ }
+ .counter-title {
+   font-size: 1rem;
+   color: #e0e0e0;
+   font-family: 'Poppins', sans-serif;
+   font-weight: 300;
+ }
+
+ .digital-cronometer-display {
+   font-family: 'Poppins', monospace;
+   font-size: 1.8rem;
+   font-weight: 400;
+   color: #e6dcf0;
+   background-color: transparent;
+   padding: 10px 12px;
+   border-radius: 10px;
+   text-shadow: 0 0 5px #c9a4de, 0 0 10px #c9a4de;
+   display: flex;
+   justify-content: center;
+   align-items: baseline;
+   border: 1px solid rgba(216, 182, 255, 0.3);
+   margin-top: 15px;
+   transition: all 0.3s ease;
+   gap: 0; /* CORRECCIÓN: Eliminamos el gap global */
+ }
+ 
+ .digital-cronometer-display:hover {
+   border-color: rgba(217, 182, 255, 0.7);
+   box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
+ }
+ 
+ .digital-cronometer-display .unit {
+   font-size: 0.7rem;
+   color: #c9a4de;
+   opacity: 0.8;
+   font-weight: 300;
+   margin-left: 3px; /* CORRECCIÓN: Espacio pequeño entre número y unidad */
+ }
+
+ /* CORRECCIÓN: Añade espacio entre los pares de unidades (D y H, H y M, etc.) */
+ .digital-cronometer-display span.unit + span {
+    margin-left: 15px; 
+ }
+ 
+ /* =========================================================
+    === MEDIA QUERY PARA PANTALLAS GRANDES (PC) ===
+    ========================================================= */
+ @media (min-width: 768px) {
+    .App {
+        padding: 20px;
+    }
+    .App-header {
+        padding: 40px;
+    }
+    .App-header h1 {
+        font-size: 2.5rem;
+    }
+    .App-logo {
+        height: 150px;
+    }
+    .gallery-section-title {
+        font-size: 1.8rem;
+    }
+    .slide-description {
+        padding: 20px;
+    }
+    .slide-title {
+        font-size: 1.4rem;
+    }
+    .slide-description p {
+        font-size: 1rem;
+    }
+    .nav-arrow {
+        font-size: 2rem;
+        width: 50px; 
+        height: 50px;
+    }
+    .left-arrow { left: -25px; }
+    .right-arrow { right: -25px; }
+    
+    .counters-container {
+        padding: 30px;
+    }
+    .counter-main-title {
+        font-size: 1.5rem;
+    }
+    .counter-title {
+        font-size: 1.2rem;
+    }
+    .digital-cronometer-display {
+        font-size: 2.5rem;
+    }
+    .digital-cronometer-display .unit {
+        font-size: 0.8rem;
+        margin-left: 5px; /* Ajustamos el margen para PC */
+    }
+    .digital-cronometer-display span.unit + span {
+        margin-left: 20px; /* Ajustamos el margen para PC */
+    }
+ }
 `}</style>
       <div className="App">
         <header className="App-header">
