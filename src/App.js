@@ -142,9 +142,8 @@ function App() {
     const m = Math.floor(s / 60);
     const h = Math.floor(m / 60);
     const d = Math.floor(h / 24);
-    // Cambiamos la función de formato para que no añada un cero a los días
     const format = (n) => (n < 10 ? '0' + n : n);
-    const formatDays = (n) => n; // Los días se muestran tal cual
+    const formatDays = (n) => n;
 
     return <><span>{formatDays(d)}</span><span className="unit">D</span><span>{format(h % 24)}</span><span className="unit">H</span><span>{format(m % 60)}</span><span className="unit">M</span><span>{format(s % 60)}</span><span className="unit">S</span></>;
   };
@@ -242,30 +241,40 @@ function App() {
    overflow: hidden;
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
    border: 2px solid rgba(255, 255, 255, 0.2);
+   /* El slide ahora no tiene fondo, solo es un contenedor */
  }
  .slide-image { width: 100%; height: auto; display: block; }
+ 
+ /* ============================================================ */
+ /* === ✨ AQUÍ ESTÁ LA MAGIA PARA ARREGLAR EL TEXTO ✨ === */
+ /* ============================================================ */
  .slide-description {
-   position: absolute;
-   bottom: 0; left: 0; right: 0;
-   padding: 15px;
-   box-sizing: border-box;
-   background: rgba(10, 10, 10, 0.85);
-   backdrop-filter: blur(5px);
-   color: #f0f0f0;
-   max-height: 60%; 
-   overflow-y: auto; 
+    /* Quitamos el posicionamiento absoluto para que se ponga debajo */
+    background: #2a282f; /* Le damos un fondo sólido */
+    padding: 20px;
+    box-sizing: border-box;
+    color: #f0f0f0;
+    text-align: left; /* Alineamos a la izquierda para mejor lectura */
  }
+
  .slide-title {
-   margin: 0 0 8px 0;
+   margin: 0 0 10px 0; /* Aumentamos el margen inferior */
    font-size: 1.2rem;
    color: #d8bfd8;
    font-family: 'Playfair Display', serif;
  }
- .slide-description p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+ .slide-description p { 
+   margin: 0; 
+   font-size: 0.95rem; /* Hacemos el texto un poco más grande */
+   line-height: 1.7;   /* Aumentamos el espacio entre líneas */
+ }
+ /* ============================================================ */
  
  .nav-arrow {
    position: absolute;
-   top: 50%;
+   /* Ajustamos la posición para que quede centrada en la imagen */
+   top: 40%; 
    transform: translateY(-50%);
    background-color: rgba(0, 0, 0, 0.5);
    color: white; border: none;
@@ -284,9 +293,6 @@ function App() {
  .counters-container {
    padding: 20px 0;
    margin: 50px auto;
-   background-color: transparent;
-   box-shadow: none;
-   border: none;
  }
  .counter-item {
    margin-bottom: 30px;
@@ -295,19 +301,12 @@ function App() {
  }
  .counter-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
  
- .counter-main-title, .counter-title {
-   font-family: 'Playfair Display', serif;
-   font-size: 1.3rem;
-   color: #d8b6ff;
-   margin-bottom: 15px;
-   letter-spacing: 1.5px;
-   text-shadow: 0 0 8px rgba(216, 182, 255, 0.5);
- }
  .counter-title {
    font-size: 1rem;
    color: #e0e0e0;
    font-family: 'Poppins', sans-serif;
    font-weight: 300;
+   margin-bottom: 15px;
  }
 
  .digital-cronometer-display {
@@ -315,7 +314,6 @@ function App() {
    font-size: 1.8rem;
    font-weight: 400;
    color: #e6dcf0;
-   background-color: transparent;
    padding: 10px 12px;
    border-radius: 10px;
    text-shadow: 0 0 5px #c9a4de, 0 0 10px #c9a4de;
@@ -325,23 +323,19 @@ function App() {
    border: 1px solid rgba(216, 182, 255, 0.3);
    margin-top: 15px;
    transition: all 0.3s ease;
-   gap: 0; /* CORRECCIÓN: Eliminamos el gap global */
+   gap: 0;
  }
- 
  .digital-cronometer-display:hover {
    border-color: rgba(217, 182, 255, 0.7);
    box-shadow: 0 0 15px rgba(216, 182, 255, 0.2);
  }
- 
  .digital-cronometer-display .unit {
    font-size: 0.7rem;
    color: #c9a4de;
    opacity: 0.8;
    font-weight: 300;
-   margin-left: 3px; /* CORRECCIÓN: Espacio pequeño entre número y unidad */
+   margin-left: 3px;
  }
-
- /* CORRECCIÓN: Añade espacio entre los pares de unidades (D y H, H y M, etc.) */
  .digital-cronometer-display span.unit + span {
     margin-left: 15px; 
  }
@@ -350,31 +344,27 @@ function App() {
     === MEDIA QUERY PARA PANTALLAS GRANDES (PC) ===
     ========================================================= */
  @media (min-width: 768px) {
-    .App {
-        padding: 20px;
-    }
-    .App-header {
-        padding: 40px;
-    }
-    .App-header h1 {
-        font-size: 2.5rem;
-    }
-    .App-logo {
-        height: 150px;
-    }
-    .gallery-section-title {
-        font-size: 1.8rem;
-    }
+    .App-header { padding: 40px; }
+    .App-header h1 { font-size: 2.5rem; }
+    .App-logo { height: 150px; }
+    .gallery-section-title { font-size: 1.8rem; }
+
+    /* En PC, volvemos a poner el texto sobre la imagen porque hay más espacio */
     .slide-description {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
         padding: 20px;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(5px);
+        max-height: 60%; 
+        overflow-y: auto; 
+        text-align: left;
     }
-    .slide-title {
-        font-size: 1.4rem;
-    }
-    .slide-description p {
-        font-size: 1rem;
-    }
+    .slide-title { font-size: 1.4rem; }
+    .slide-description p { font-size: 1rem; line-height: 1.6; }
+    
     .nav-arrow {
+        top: 50%;
         font-size: 2rem;
         width: 50px; 
         height: 50px;
@@ -382,25 +372,10 @@ function App() {
     .left-arrow { left: -25px; }
     .right-arrow { right: -25px; }
     
-    .counters-container {
-        padding: 30px;
-    }
-    .counter-main-title {
-        font-size: 1.5rem;
-    }
-    .counter-title {
-        font-size: 1.2rem;
-    }
-    .digital-cronometer-display {
-        font-size: 2.5rem;
-    }
-    .digital-cronometer-display .unit {
-        font-size: 0.8rem;
-        margin-left: 5px; /* Ajustamos el margen para PC */
-    }
-    .digital-cronometer-display span.unit + span {
-        margin-left: 20px; /* Ajustamos el margen para PC */
-    }
+    .counter-title { font-size: 1.2rem; }
+    .digital-cronometer-display { font-size: 2.5rem; }
+    .digital-cronometer-display .unit { font-size: 0.8rem; margin-left: 5px; }
+    .digital-cronometer-display span.unit + span { margin-left: 20px; }
  }
 `}</style>
       <div className="App">
@@ -427,7 +402,7 @@ function App() {
             transition={{ delay: 0.5, duration: 1 }}
             className="counters-container"
           >
-            <h2 className="counter-main-title">Momentos que Atesoro</h2>
+            <h2 className="gallery-section-title">Momentos que Atesoro</h2>
             <div className="counter-item">
               <p className="counter-title">Desde que empezamos a hablar:</p>
               <div className="digital-cronometer-display">
