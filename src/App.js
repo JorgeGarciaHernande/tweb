@@ -67,7 +67,7 @@ const galeriaContenido_Sentimientos = [
     idFoto: 'ash',
     imagen: 'https://i.pinimg.com/736x/74/ab/0e/74ab0e443899d085685150dc42a912ea.jpg',
     titulo: 'Me encantas',
-    descripcion: 'Me encanta mucho de ti tus bromas algo tontita como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
+    descripcion: 'Me encanta mucho de ti tus bromas algo tontitas como te obsesionas con tus cantantes como me albureabas no podia evitar reirme como no te daba verguenza sollozar cuando veiamos banana fish como no tenias reparo en burlarte de mi por errores en el genshin y yo por dentro me moria de pena, cuando me sentia insegura con las fotos no dudaste mucho para aconsejarme',
   },
   {
     idFoto: 'confesion',
